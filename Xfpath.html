@@ -1,4 +1,7 @@
-<sly data-sly-test="${properties.xfVariationPath}">
-    <sly data-sly-resource="${properties.xfVariationPath @ resourceType='cq/experience-fragments/components/xfpage', wcmmode='disabled'}"/>
+<sly data-sly-test="${'true'}">
+    <p>XF Path: ${properties.xfVariationPath}</p>
+
+    <sly data-sly-test="${properties.xfVariationPath}">
+        <sly data-sly-resource="${properties.xfVariationPath @ resourceType='cq/experience-fragments/components/xfpage', wcmmode='disabled'}"/>
     </sly>
-    
+    </sly>
