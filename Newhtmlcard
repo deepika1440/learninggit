@@ -19,3 +19,7 @@ private void init() {
 public String getVariationResourcePath() {
     return variationResourcePath;
 }
+
+
+<sly data-sly-use.card="com.example.core.models.CardModel"
+     data-sly-resource="${card.variationResourcePath @ resourceType='core/wcm/components/experiencefragment/v1/experiencefragment'}" />
