@@ -1,0 +1,21 @@
+@ValueMapValue
+private String styleType; // selected variation, e.g., "summary"
+
+@ValueMapValue
+private String xfPath; // base XF path, e.g., "/content/experience-fragments/my-site/cards/my-card"
+
+@Inject
+private ResourceResolver resourceResolver;
+
+private String variationResourcePath;
+
+@PostConstruct
+private void init() {
+    if (xfPath != null && styleType != null) {
+        variationResourcePath = xfPath + "/" + styleType + "/jcr:content";
+    }
+}
+
+public String getVariationResourcePath() {
+    return variationResourcePath;
+}
