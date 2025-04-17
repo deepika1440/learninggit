@@ -1,7 +1,21 @@
-<sly data-sly-test="${'true'}">
-    <p>XF Path: ${properties.xfVariationPath}</p>
+<sly data-sly-use.fragment="com.adobe.cq.wcm.core.components.models.ExperienceFragment" />
+<sly data-sly-use.creditCard="com.bankofamerica.flagship.core.components.interfaces.content.CreditCard" />
 
-    <sly data-sly-test="${properties.xfVariationPath}">
-        <sly data-sly-resource="${properties.xfVariationPath @ resourceType='cq/experience-fragments/components/xfpage', wcmmode='disabled'}"/>
-    </sly>
-    </sly>
+<div class="aem-helper" data-sly-test="${wcmmode.edit || wcmmode.preview}">
+    Edit: Credit Card Component
+</div>
+
+<div class="properties_tab">
+    <span>${creditCard.styleType}</span>
+</div>
+
+<p>XF Path: ${fragment.xfPath}</p>
+
+<sly data-sly-test="${fragment.xfPath}">
+    <sly data-sly-resource="${fragment.xfPath @ resourceType='cq/experience-fragments/components/xfpage', wcmmode='disabled'}" />
+</sly>
+
+<div class="overrides_tab">
+    <span>${creditCard.headline}</span>
+    <span>${creditCard.tagline}</span>
+</div>
