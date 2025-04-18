@@ -1,0 +1,23 @@
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+public class CardMasthead {
+
+    @ValueMapValue
+    private String variation;
+
+    @Inject
+    private ResourceResolver resourceResolver;
+
+    private static final String XF_BASE_PATH = "/content/experience-fragments/bofa/cards/card-masthead";
+
+    public Resource getVariationContentResource() {
+        if (StringUtils.isNotBlank(variation)) {
+            String path = XF_BASE_PATH + "/" + variation + "/jcr:content/root";
+            return resourceResolver.getResource(path);
+        }
+        return null;
+    }
+
+    public String getVariation() {
+        return variation;
+    }
+}
