@@ -1,0 +1,42 @@
+<!-- Edit mode indicator -->
+<div data-sly-test="${wcmmode.edit && !wcmmode.preview}" class="aem-helper">
+  Edit: Card Masthead Component
+</div>
+
+<!-- Model usage -->
+<sly data-sly-use.model="com.bankofamerica.flagship.core.components.interfaces.content.CardMasthead" />
+
+<!-- Debug/info lines -->
+<p>${model.mastheadVariation}</p>
+<p>${model.componentId}</p>
+
+<!-- Card Masthead Container -->
+<div class="card-masthead-container ${model.mastheadVariation == 'Rounded corners' ? 'rounded' : ''}">
+
+  <!-- Section 1: Left with Image -->
+  <div class="card-masthead__left">
+    <sly data-sly-resource="simple-image" data-sly-unwrap/>
+  </div>
+
+  <!-- Section 2: Top Offer (conditionally shown if XF offer exists) -->
+  <div data-sly-test="${model.hasOffer}" class="card-masthead__offer">
+    <sly data-sly-resource="headline-group" data-sly-unwrap/>
+  </div>
+
+  <!-- Section 3: Bottom Headline & CTA -->
+  <div class="card-masthead__bottom bg-grey">
+    <!-- Headline/Description text -->
+    <p class="card-masthead__description">${model.description}</p>
+
+    <!-- CTA Button (conditionally shown) -->
+    <sly data-sly-test="${model.hasCTA}">
+      <sly data-sly-resource="cta-button" data-sly-unwrap/>
+    </sly>
+
+    <!-- Standalone Links -->
+    <sly data-sly-resource="standalone-links" data-sly-unwrap/>
+
+    <!-- Unity Modal -->
+    <sly data-sly-resource="unity-modal" data-sly-unwrap/>
+  </div>
+</div>
