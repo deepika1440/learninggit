@@ -1,25 +1,22 @@
-@ValueMapValue
-private String styleType; // selected variation, e.g., "summary"
+public class QuickListItem {
 
-@ValueMapValue
-private String xfPath; // base XF path, e.g., "/content/experience-fragments/my-site/cards/my-card"
+    private final Resource itemResource;
 
-@Inject
-private ResourceResolver resourceResolver;
-
-private String variationResourcePath;
-
-@PostConstruct
-private void init() {
-    if (xfPath != null && styleType != null) {
-        variationResourcePath = xfPath + "/" + styleType + "/jcr:content";
+    public QuickListItem(Resource itemResource) {
+        this.itemResource = itemResource;
     }
+
+    public String getHeaderPath() {
+        return itemResource.getChild("header") != null
+            ? itemResource.getPath() + "/header"
+            : null;
+    }
+
+    public String getIconPath() {
+        return itemResource.getChild("icon") != null
+            ? itemResource.getPath() + "/icon"
+            : null;
+    }
+
+    // other fields like URL, target, ariaLabel, etc.
 }
-
-public String getVariationResourcePath() {
-    return variationResourcePath;
-}
-
-
-<sly data-sly-use.card="com.example.core.models.CardModel"
-     data-sly-resource="${card.variationResourcePath @ resourceType='core/wcm/components/experiencefragment/v1/experiencefragment'}" />
