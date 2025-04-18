@@ -1,0 +1,31 @@
+<!-- Edit mode indicator -->
+<div data-sly-test="${wcmmode.edit && !wcmmode.preview}" class="aem-helper">
+  Edit: Card Masthead Component
+</div>
+
+<!-- Model usage -->
+<sly data-sly-use.model="com.bankofamerica.flagship.core.components.interfaces.content.CardMasthead" />
+
+<!-- Debug/info lines (can be removed later) -->
+<p>${model.mastheadVariation}</p>
+<p>${model.componentID}</p>
+
+<!-- Section 1: Left with Image -->
+<sly data-sly-resource="${'simple-image' @ resourceType='your-project/components/atoms/simple-image'}" />
+
+<!-- Section 2: Top Offer (conditionally shown if XF offer exists) -->
+<div data-sly-test="${model.hasOffer}">
+  <sly data-sly-resource="${'headline-group' @ resourceType='your-project/components/atoms/headline-group'}" />
+</div>
+
+<!-- Section 3: Bottom Headline & CTA -->
+<div class="card-masthead__bottom-section">
+  
+  <!-- Headline/Description text -->
+  <p class="card-masthead__description">
+    ${model.description}
+  </p>
+
+  <!-- CTA Button (conditionally shown) -->
+  <sly data-sly-test="${model.hasCTA}"
+       data-sly-resource="${'cta-button'
