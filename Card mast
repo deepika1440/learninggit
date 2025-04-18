@@ -1,0 +1,10 @@
+<!-- Section 1: Left with image -->
+<sly data-sly-resource="${'simple-image' @ resourceType='your-project/components/atoms/simple-image'}"/>
+
+<!-- Section 2: Top Offer (conditionally shown if XF offer exists) -->
+<div data-sly-test="${model.hasOffer}">
+  <sly data-sly-resource="${'headline-group' @ resourceType='your-project/components/atoms/headline-group'}"/>
+</div>
+
+<!-- Section 3: Bottom Headline & CTA -->
+<sly data-sly-resource="${'button' @ resourceType='your-project/components/atoms/button'}"/>
