@@ -1,32 +1,48 @@
-<!-- Define the template -->
-<template data-sly-template.quickListItem="${@ item}">
-  <div class="tile">
-    <a class="sticky-banner-content"
-       href="${item.urlPath}"
-       target="${item.target}"
-       aria-label="${item.ariaLabel}">
-       
-      <!-- Render Icon if available -->
-      <sly data-sly-test="${item.iconPath}">
-        <div class="icon-container">
-          <sly data-sly-resource="${item.iconPath @ resourceType='flagship/components/content/icon'}" />
-        </div>
-      </sly>
-      
-      <!-- Render Header if available -->
-      <sly data-sly-test="${item.headerPath}">
-        <sly data-sly-resource="${item.headerPath @ resourceType='flagship/components/content/header'}" />
-      </sly>
-      
-      <!-- Optional Arrow Icon -->
-      <sly data-sly-test="${item.showArrow}">
-        <span class="tx-icon-interactive-caret-right"></span>
-      </sly>
-    </a>
+<!-- Define the Quick List Container -->
+<div class="quick-list-container ${model.colorTheme}">
+  
+  <!-- Iterate over each item in the multifield -->
+  <sly data-sly-list.item="${model.items}">
     
-    <!-- Optional Divider -->
-    <sly data-sly-test="${item.showDivider}">
-      <div class="divider"></div>
-    </sly>
-  </div>
-</template>
+    <!-- Define each tile -->
+    <div class="tile">
+      
+      <!-- Anchor tag with dynamic attributes -->
+      <a class="sticky-banner-content"
+         href="${item.urlPath}"
+         target="${item.target}"
+         aria-label="${item.ariaLabel}">
+         
+        <!-- Render Icon if available -->
+        <sly data-sly-test="${item.iconPath}">
+          <div class="icon-container">
+            <sly data-sly-resource="${item.iconPath @ resourceType='flagship/components/content/icon'}" />
+          </div>
+        </sly>
+        
+        <!-- Render Header if available -->
+        <sly data-sly-test="${item.headerPath}">
+          <sly data-sly-resource="${item.headerPath @ resourceType='flagship/components/content/header'}" />
+        </sly>
+        
+        <!-- Optional Arrow Icon -->
+        <sly data-sly-test="${item.showArrow}">
+          <span class="tx-icon-interactive-caret-right"></span>
+        </sly>
+      </a>
+      
+      <!-- Optional Divider -->
+      <sly data-sly-test="${item.showDivider}">
+        <div class="divider"></div>
+      </sly>
+      
+      <!-- Parsys for additional components -->
+      <div class="quick-list-parsys">
+        <sly data-sly-resource="${item.parsysPath @ resourceType='wcm/foundation/components/parsys'}" />
+      </div>
+      
+    </div>
+    
+  </sly>
+  
+</div>
