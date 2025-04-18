@@ -1,0 +1,24 @@
+<!-- Only visible in Edit Mode -->
+<div data-sly-test="${wcmmode.edit && !wcmmode.preview}" class="aem-helper">
+    Edit: Text Highlight Component
+</div>
+
+<!-- Java Use-API Model -->
+<sly data-sly-use.textHighlight="com.baml.aem.unity.core.models.TextHighlight" />
+
+<!-- Component Content -->
+<div class="text-highlight">
+    <div class="text-highlight__text">
+        <span>${textHighlight.text}</span>
+
+        <span data-sly-test="${textHighlight.icon}">
+            <div class="uc-icon uc-icon-${textHighlight.icon}"></div>
+        </span>
+    </div>
+
+    <div class="text-highlight__content">
+        <div data-sly-resource="${'separator' @ resourceType='Flagship/components/content/elements/separator'}"></div>
+        <div data-sly-resource="${'standalone-link' @ resourceType='unity/core/components/standalone/standalone-link'}"></div>
+        <div data-sly-resource="${'simple-icon' @ resourceType='unity/core/components/icon/v1/icon'}"></div>
+    </div>
+</div>
