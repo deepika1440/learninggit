@@ -1,10 +1,17 @@
-<!-- Section 1: Left with image -->
-<sly data-sly-resource="${'simple-image' @ resourceType='your-project/components/atoms/simple-image'}"/>
+<!-- card-masthead-v1.html -->
+<div class="card-masthead ${properties.mastheadVariation == 'Rounded corners' ? 'rounded' : ''}">
+  <div class="left-section bg-grey">
+    <sly data-sly-resource="simple-image" data-sly-unwrap/>
+  </div>
 
-<!-- Section 2: Top Offer (conditionally shown if XF offer exists) -->
-<div data-sly-test="${model.hasOffer}">
-  <sly data-sly-resource="${'headline-group' @ resourceType='your-project/components/atoms/headline-group'}"/>
+  <sly data-sly-test="${cardXFModel.hasOffer}">
+    <div class="top-offer bg-blue">
+      <sly data-sly-resource="headline-group" data-sly-unwrap/>
+    </div>
+  </sly>
+
+  <div class="bottom-section bg-grey">
+    <sly data-sly-resource="button" data-sly-unwrap/>
+    <sly data-sly-resource="standalone-links" data-sly-unwrap/>
+  </div>
 </div>
-
-<!-- Section 3: Bottom Headline & CTA -->
-<sly data-sly-resource="${'button' @ resourceType='your-project/components/atoms/button'}"/>
