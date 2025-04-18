@@ -1,0 +1,11 @@
+<sly data-sly-use.model="com.bankofamerica.flagship.core.components.interfaces.content.CardMasthead" />
+
+<sly data-sly-test="${model.variationContentResource}">
+  <div class="card-masthead card-masthead--${model.variation}">
+    <sly data-sly-resource="${model.variationContentResource @ decorationTagName='div'}" />
+  </div>
+</sly>
+
+<sly data-sly-test="${!model.variationContentResource}">
+  <p class="card-masthead__error">No variation selected or not found.</p>
+</sly>
