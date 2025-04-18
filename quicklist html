@@ -1,0 +1,19 @@
+
+<data-sly-list.item="${resource.getChild('quickListItems').listChildren}">
+  <div class="quick-list-entry">
+
+    <!-- Use index to distinguish each pair -->
+    <sly data-sly-resource="${ @ 
+      resourceType='myproject/components/content/header',
+      text=item.properties.text,
+      addSelectors='item' + itemList.index 
+    }" />
+
+    <sly data-sly-resource="${ @ 
+      resourceType='myproject/components/content/icon',
+      iconPath=item.properties.iconPath,
+      addSelectors='item' + itemList.index 
+    }" />
+
+  </div>
+</data-sly-list>
