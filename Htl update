@@ -29,3 +29,7 @@
   <!-- CTA Button (conditionally shown) -->
   <sly data-sly-test="${model.hasCTA}"
        data-sly-resource="${'cta-button'
+<sly data-sly-test="${model.hasCTA}">
+    <sly data-sly-resource="${'cta-button' @ resourceType='your-project/components/atoms/button'}" />
+  </sly>
+</div>
