@@ -1,17 +1,25 @@
-<!-- card-masthead-v1.html -->
-<div class="card-masthead ${properties.mastheadVariation == 'Rounded corners' ? 'rounded' : ''}">
-  <div class="left-section bg-grey">
-    <sly data-sly-resource="simple-image" data-sly-unwrap/>
-  </div>
+<!-- Use the common template -->
+<sly data-sly-use.template="flagship/components/commons/templates.html"
+     data-sly-call="${template.helper}" />
 
-  <sly data-sly-test="${cardXFModel.hasOffer}">
-    <div class="top-offer bg-blue">
-      <sly data-sly-resource="headline-group" data-sly-unwrap/>
-    </div>
-  </sly>
+<!-- Card Masthead Component -->
+<div class="card-masthead-content"
+     data-sly-use.masthead="com.bankofamerica.flagship.core.components.interfaces.content.CardMasthead"
+     data-sly-set.colorStickyBanner="${masthead.bannerColor}"
+     data-sly-set.variation="${masthead.mastheadVariation ?: 'rounded-corners'}"
+     id="${masthead.componentId}">
 
-  <div class="bottom-section bg-grey">
-    <sly data-sly-resource="button" data-sly-unwrap/>
-    <sly data-sly-resource="standalone-links" data-sly-unwrap/>
-  </div>
+    <!-- Background Container -->
+    <div data-sly-resource="${'background-container' @ resourceType='flagship/components/content/generic/background-container'}"
+         data-sly-unwrap="${wcmmode.disabled || wcmmode.edit}"></div>
+
+    <!-- Unity Button (Only show if configured and in edit mode) -->
+    <div data-sly-test="${masthead.unityButton && wcmmode.edit}"
+         data-sly-resource="${'unity-button' @ resourceType='flagship/components/content/unity-flagship/unity-button'}"
+         data-sly-unwrap="${wcmmode.disabled}"></div>
+
+    <!-- Icon -->
+    <div data-sly-test="${masthead.icon && wcmmode.edit}"
+         data-sly-resource="${'icon' @ resourceType='flagship/components/content/elements/icon'}"
+         data-sly-unwrap="${wcmmode.disabled}"></div>
 </div>
