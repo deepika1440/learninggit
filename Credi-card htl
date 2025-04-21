@@ -1,0 +1,5 @@
+<sly data-sly-use.model="com.bankofamerica.flagship.core.components.impl.CardMastheadImpl" />
+
+<sly data-sly-test.path="${model.selectedVariationPath}">
+    <sly data-sly-resource="${path @ resourceType='wcm/foundation/components/responsivegrid'}" />
+</sly>
