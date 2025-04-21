@@ -1,0 +1,12 @@
+@ValueMapValue
+private String selectedVariation;
+
+@ValueMapValue
+private String baseXFPath = "/content/experience-fragments/bofa/cards/card-masthead";
+
+public String getSelectedVariationPath() {
+    if (StringUtils.isNotBlank(selectedVariation)) {
+        return baseXFPath + "/" + selectedVariation + "/jcr:content/root";
+    }
+    return null;
+}
