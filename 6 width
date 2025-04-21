@@ -3,3 +3,12 @@
         <sly data-sly-resource="${'card_masthead' @ resourceType='...'}" />
     </div>
 </div>
+
+<div class="aem-Grid aem-Grid--12">
+  <div class="aem-GridColumn aem-GridColumn--default--6">
+    <sly data-sly-resource="${'card_masthead1' @ resourceType='flagship/components/content/generic/card-masthead'}" />
+  </div>
+  <div class="aem-GridColumn aem-GridColumn--default--6">
+    <sly data-sly-resource="${'card_masthead2' @ resourceType='flagship/components/content/generic/card-masthead'}" />
+  </div>
+</div>
