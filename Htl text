@@ -1,0 +1,9 @@
+<div class="card-container">
+  <div class="card-icon">
+    <span class="icon">${properties.icon @ context='html'}</span>
+  </div>
+  <div class="card-content">
+    <p class="card-heading">${properties.headingText}</p>
+    <a href="${properties.linkUrl}" class="card-link">${properties.linkText}</a>
+  </div>
+</div>
