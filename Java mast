@@ -1,0 +1,121 @@
+@Model(
+    adaptables = {SlingHttpServletRequest.class, Resource.class},
+    adapters = CardMasthead.class,
+    resourceType = {CardMastheadImpl.RESOURCE_TYPE},
+    defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
+)
+public class CardMastheadImpl implements CardMasthead {
+
+    protected static final String RESOURCE_TYPE = "Flagship/components/content/generic/card-masthead";
+
+    @ValueMapValue
+    private String mastheadVariation;
+
+    @ValueMapValue
+    private String fragmentVariationPath;
+
+    @ValueMapValue
+    private String componentID;
+
+    @Inject
+    private Resource resource;
+
+    @Inject
+    private SlingHttpServletRequest request;
+
+    @Inject
+    private Page currentPage;
+
+    @Inject
+    private CardXFPage cardXFPage;
+
+    // Fields to populate from cardXFPage
+    private String tagline;
+    private String title;
+    private String leadIn;
+    private String applyNow;
+    private String link;
+    private String imageLarge;
+
+    @PostConstruct
+    protected void init() {
+        if (resource == null && request != null) {
+            resource = request.getResource();
+        }
+
+        if (resource != null) {
+            ValueMap properties = resource.adaptTo(ValueMap.class);
+            if (properties != null) {
+                String fragmentPath = properties.get("fragmentVariationPath", String.class);
+                if (StringUtils.isNotBlank(fragmentPath)) {
+                    getXFProperties(fragmentPath);
+                } else {
+                    String xfPath = getCurrentXFPath(resource);
+                    if (StringUtils.isNotBlank(xfPath)) {
+                        getXFProperties(xfPath);
+                    }
+                }
+            }
+        }
+
+        // Inject fields from cardXFPage
+        if (cardXFPage != null) {
+            tagline = cardXFPage.getTagline();
+            title = cardXFPage.getTitle();
+            leadIn = cardXFPage.getLeadIn();
+            applyNow = cardXFPage.getApplyNow();
+            link = cardXFPage.getLink();
+            imageLarge = cardXFPage.getImageLarge();
+        }
+    }
+
+    // Getters for interface
+    @Override
+    public String getMastheadVariation() {
+        return mastheadVariation;
+    }
+
+    @Override
+    public String getComponentID() {
+        return componentID;
+    }
+
+    @Override
+    public String getFragmentVariationPath() {
+        return fragmentVariationPath;
+    }
+
+    // Getters for new fields
+    public String getTagline() {
+        return tagline;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLeadIn() {
+        return leadIn;
+    }
+
+    public String getApplyNow() {
+        return applyNow;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getImageLarge() {
+        return imageLarge;
+    }
+
+    private String getCurrentXFPath(Resource resource) {
+        // logic for deriving the XF path
+        return "";
+    }
+
+    private void getXFProperties(String fragmentPath) {
+        // logic for loading XF content
+    }
+}
