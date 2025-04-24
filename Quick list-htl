@@ -1,0 +1,26 @@
+<sly data-sly-use.model="com.myproject.core.models.QuickListModel" />
+
+<ul class="quick-list">
+  <sly data-sly-list.item="${model.items}">
+    <li class="quick-list__item">
+      <!-- Render Header Component -->
+      <sly data-sly-resource="${'header-' + itemList.index @ 
+        resourceType='myproject/components/content/header',
+        addSelectors='',
+        wcmmode='disabled'}"
+      />
+
+      <!-- Render Icon Component -->
+      <sly data-sly-resource="${'icon-' + itemList.index @ 
+        resourceType='myproject/components/content/icon',
+        addSelectors='',
+        wcmmode='disabled'}"
+      />
+
+      <!-- Render Link -->
+      <a href="${item.url}" target="${item.target ? '_blank' : '_self'}">
+        ${item.headerText}
+      </a>
+    </li>
+  </sly>
+</ul>
