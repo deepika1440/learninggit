@@ -1,0 +1,60 @@
+package com.myproject.core.models;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Model(
+    adaptables = Resource.class,
+    defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
+)
+public class QuickListModel {
+
+    @ChildResource(name = "links")
+    private List<Resource> linkItems;
+
+    public List<LinkItem> getItems() {
+        if (linkItems == null) {
+            return Collections.emptyList();
+        }
+
+        return linkItems.stream().map(LinkItem::new).collect(Collectors.toList());
+    }
+
+    public static class LinkItem {
+        private final String url;
+        private final String headerText;
+        private final String iconPath;
+        private final boolean target;
+
+        public LinkItem(Resource resource) {
+            this.url = resource.getValueMap().get("url", StringUtils.EMPTY);
+            this.headerText = resource.getValueMap().get("headerText", StringUtils.EMPTY);
+            this.iconPath = resource.getValueMap().get("iconPath", StringUtils.EMPTY);
+            this.target = resource.getValueMap().get("target", false);
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getHeaderText() {
+            return headerText;
+        }
+
+        public String getIconPath() {
+            return iconPath;
+        }
+
+        public boolean isTarget() {
+            return target;
+        }
+    }
+}
