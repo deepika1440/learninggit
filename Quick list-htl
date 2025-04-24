@@ -24,3 +24,6 @@
     </li>
   </sly>
 </ul>
+<sly data-sly-resource="${'icon-' + itemList.index}" 
+     @resourceType="flagship/components/content/elements/icon" 
+     wcmmode="disabled" />
