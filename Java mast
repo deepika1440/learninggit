@@ -119,3 +119,9 @@ public class CardMastheadImpl implements CardMasthead {
         // logic for loading XF content
     }
 }
+private void getXFProperties(String fragmentPath) {
+    Resource xfRes = resource.getResourceResolver().getResource(fragmentPath + "/jcr:content");
+    if (xfRes != null) {
+        cardXFPage = xfRes.adaptTo(CardXFPage.class);
+    }
+}
