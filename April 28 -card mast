@@ -1,0 +1,34 @@
+@PostConstruct
+protected void init() {
+    if (resource == null && request != null) {
+        resource = request.getResource();
+    }
+
+    assert resource != null;
+
+    ValueMap properties = resource.adaptTo(ValueMap.class);
+
+    String fragmentPath = properties.get("fragmentVariationPath", String.class);
+
+    if (StringUtils.isNotBlank(fragmentPath)) {
+        loadXFProperties(fragmentPath);
+    }
+}
+
+private void loadXFProperties(String fragmentPath) {
+    Resource variationResource = resource.getResourceResolver()
+        .getResource(fragmentPath + "/jcr:content/variations/master");
+
+    if (variationResource != null) {
+        ValueMap valueMap = variationResource.adaptTo(ValueMap.class);
+
+        if (valueMap != null) {
+            tagline = valueMap.get("tagline", String.class);
+            title = valueMap.get("title", String.class);
+            leadIn = valueMap.get("leadIn", String.class);
+            applyNow = valueMap.get("applyNow", String.class);
+            link = valueMap.get("link", String.class);
+            imageLarge = valueMap.get("imageLarge", String.class);
+        }
+    }
+}
