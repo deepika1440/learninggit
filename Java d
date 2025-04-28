@@ -1,0 +1,37 @@
+private void loadXFProperties(String fragmentPath) {
+    if (StringUtils.isBlank(fragmentPath)) {
+        return;
+    }
+
+    Resource masterVariation = resource.getResourceResolver()
+        .getResource(fragmentPath + "/jcr:content/variations/master");
+
+    if (masterVariation != null) {
+        ValueMap valueMap = masterVariation.getValueMap();
+
+        if (valueMap != null) {
+            tagline = valueMap.get("tagline", String.class);
+            title = valueMap.get("title", String.class);
+            leadIn = valueMap.get("leadIn", String.class);
+            applyNow = valueMap.get("applyNow", String.class);
+            link = valueMap.get("link", String.class);
+            imageLarge = valueMap.get("imageLarge", String.class);
+        }
+    }
+}
+
+@PostConstruct
+protected void init() {
+    if (resource == null && request != null) {
+        resource = request.getResource();
+    }
+
+    ValueMap property = resource.adaptTo(ValueMap.class);
+    if (property != null) {
+        fragmentVariationPath = property.get("fragmentVariationPath", String.class);
+
+        if (StringUtils.isNotBlank(fragmentVariationPath)) {
+            loadXFProperties(fragmentVariationPath);
+        }
+    }
+}
