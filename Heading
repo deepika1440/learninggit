@@ -1,0 +1,53 @@
+<sly data-sly-use.headingGroup="com.baml.aem.unity.core.models.HeadingGroup" />
+
+<div data-sly-test="${wcmmode.edit && !wcmmode.preview}" class="aem-helper">
+    Edit: ${component.title}
+</div>
+
+<sly data-sly-test.alignmentDesktop="${headingGroup.headingGroupAlignmentDesktopOverride || headingGroup.headingGroupAlignmentDesktop}" />
+<sly data-sly-test.alignmentMobile="${headingGroup.headingGroupAlignmentMobileOverride || headingGroup.headingGroupAlignmentMobile}" />
+
+<div
+    version="${headingGroup.versionNumber @ context='text'}"
+    class="uc uc-heading ${headingGroup.customClassOverride} ${alignmentDesktop} ${alignmentMobile} ${headingGroup.topMargin}"
+    id="${headingGroup.componentId}"
+    data-tracking-name="HeadingGroup"
+    data-ada-hide="${headingGroup.headlineId}"
+    data-id="${headingGroup.slug}">
+
+    <!-- Check variation type -->
+    <sly data-sly-test.isCreditCard="${headingGroup.headingGroupVariation == 'creditcard'}" />
+
+    <!-- If variation is DEFAULT -->
+    <sly data-sly-test="${!isCreditCard}">
+        <sly data-sly-test="${headingGroup.combineLeadInHeadline == 'false'}" data-sly-call="${headingSeparate @ values=headingGroup}" />
+        <sly data-sly-test="${headingGroup.combineLeadInHeadline == 'true'}" data-sly-call="${headingCombined @ values=headingGroup}" />
+    </sly>
+
+    <!-- If variation is CREDITCARD -->
+    <sly data-sly-test="${isCreditCard}">
+        <div class="uc-heading subheadline">
+            ${properties.subheadlineText @ context='html'}
+        </div>
+    </sly>
+
+</div>
+
+<!-- Heading templates -->
+<template data-sly-template.headingSeparate="${@ values}">
+    <span data-sly-element="${values.leadinValue}" data-sly-test="${values.leadinText}" class="uc-heading preheadline uc-copy--lead-in ${values.leadinColor}">
+        ${values.leadinText @ context='html'}
+    </span>
+    <h1 data-sly-element="${values.headlineValue}" data-sly-test="${values.headlineValue}" data-large-screen-font-style="${values.headlineStyleOverride}" id="${values.headlineId}" class="uc-heading headline">
+        ${values.headlineText @ context='html'}
+    </h1>
+</template>
+
+<template data-sly-template.headingCombined="${@ values}">
+    <h1 data-sly-element="${values.headlineValue}" data-sly-test="${values.headlineValue}" data-large-screen-font-style="${values.headlineStyleOverride}" id="${values.headlineId}" class="uc-heading headline">
+        <span data-sly-test="${values.leadinText}" class="uc-heading preheadline uc-copy--lead-in ${values.leadinColor}">
+            ${values.leadinText @ context='html'}
+        </span>
+        ${values.headlineText @ context='html'}
+    </h1>
+</template>
