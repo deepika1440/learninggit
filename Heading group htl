@@ -1,0 +1,4 @@
+<sly data-sly-test="${headingGroup.variationType != 'creditCard'}">
+    <sly data-sly-test="${headingGroup.combineLeadInHeadline == 'false'}" data-sly-call="${headingSeparate @ values=headingGroup}"></sly>
+    <sly data-sly-test="${headingGroup.combineLeadInHeadline == 'true'}" data-sly-call="${headingCombined @ values=headingGroup}"></sly>
+</sly>
