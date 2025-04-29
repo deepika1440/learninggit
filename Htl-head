@@ -1,0 +1,51 @@
+<sly data-sly-use.headingGroup="com.baml.aem.unity.core.models.HeadingGroup" />
+
+<!-- Optional debug: show variation type -->
+<!-- <p>Variation: ${headingGroup.variationCard}</p> -->
+
+<div class="uc uc-heading ${headingGroup.customClassOverride} ${headingGroup.topMargin}" 
+     id="${headingGroup.componentId}" 
+     data-tracking-name="HeadingGroup">
+
+    <!-- Default Title and LeadIn Display -->
+    <sly data-sly-test="${headingGroup.variationCard != 'creditCard'}">
+        <sly data-sly-test="${!headingGroup.combineLeadInHeadline}"
+             data-sly-call="${headingSeparate @ values=headingGroup}" />
+        <sly data-sly-test="${headingGroup.combineLeadInHeadline}"
+             data-sly-call="${headingCombined @ values=headingGroup}" />
+    </sly>
+
+    <!-- CreditCard Variation: Display Title and LeadIn from XF -->
+    <sly data-sly-test="${headingGroup.variationCard == 'creditCard'}">
+        <div class="uc-heading">
+            <span data-sly-test="${headingGroup.xfLeadIn}"
+                  class="uc-heading preheadline uc-copy--lead-in"
+                  data-sly-element="span">${headingGroup.xfLeadIn}</span>
+
+            <h1 data-sly-test="${headingGroup.xfTitle}"
+                class="uc-heading headline"
+                data-sly-element="h1">${headingGroup.xfTitle}</h1>
+        </div>
+    </sly>
+
+</div>
+
+<!-- Heading templates -->
+<template data-sly-template.headingSeparate="${@ values}">
+    <span data-sly-test="${values.leadinText}"
+          class="uc-heading preheadline uc-copy--lead-in ${values.leadinColor}"
+          data-sly-element="${values.leadInValue}">${values.leadinText}</span>
+    <h1 data-sly-test="${values.headlineValue}"
+        class="uc-heading headline"
+        data-sly-element="${values.headlineValue}">${values.headlineText}</h1>
+</template>
+
+<template data-sly-template.headingCombined="${@ values}">
+    <h1 data-sly-test="${values.headlineValue}"
+        class="uc-heading headline"
+        data-sly-element="${values.headlineValue}">
+        <span data-sly-test="${values.leadinText}"
+              class="uc-heading preheadline uc-copy--lead-in ${values.leadinColor}">${values.leadinText}</span>
+        ${values.headlineText}
+    </h1>
+</template>
