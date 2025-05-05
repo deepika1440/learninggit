@@ -1,0 +1,21 @@
+<sly data-sly-use.buttonModel="com.baml.aem.unity.core.models.Button" />
+
+<!-- Show XF Button data only if Credit Card is selected -->
+<sly data-sly-test="${buttonModel.variationCard == 'creditCard'}">
+    <a href="${buttonModel.xfLink}" 
+       class="uc uc-component uc-btn ${buttonModel.buttonStyle}" 
+       aria-label="${buttonModel.ariaLabel}" 
+       target="${buttonModel.target}">
+       ${buttonModel.xfText}
+    </a>
+</sly>
+
+<!-- Show normal authored button if Default is selected -->
+<sly data-sly-test="${buttonModel.variationCard != 'creditCard'}">
+    <a href="${buttonModel.link}" 
+       class="uc uc-component uc-btn ${buttonModel.buttonStyle}" 
+       aria-label="${buttonModel.ariaLabel}" 
+       target="${buttonModel.target}">
+       ${buttonModel.text}
+    </a>
+</sly>
