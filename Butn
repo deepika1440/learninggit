@@ -1,0 +1,37 @@
+<sly data-sly-use.buttonModel="com.baml.aem.unity.core.models.ButtonModel" />
+
+<sly data-sly-test="${buttonModel.variationCard == 'creditCard'}">
+    <!-- Credit Card variation: Use applyNowLink from XF -->
+    <a href="${buttonModel.applyNowLink}"
+       class="uc uc-component uc-btn ${buttonModel.buttonStyle}"
+       aria-label="${buttonModel.ariaLabel}"
+       target="${buttonModel.target}"
+       id="${buttonModel.componentId}">
+       
+       <span data-sly-test="${buttonModel.iconSelection && buttonModel.iconDisplay == 'left'}"
+             class="uc-icon uc-icon-${buttonModel.iconSelection} uc-icon-${buttonModel.iconStyle}"></span>
+
+       ${buttonModel.text @ context='html'}
+
+       <span data-sly-test="${buttonModel.iconSelection && buttonModel.iconDisplay == 'right'}"
+             class="uc-icon uc-icon-${buttonModel.iconSelection} uc-icon-${buttonModel.iconStyle} uc-icon-right"></span>
+    </a>
+</sly>
+
+<sly data-sly-test="${buttonModel.variationCard != 'creditCard'}">
+    <!-- Default variation: Use link from dialog -->
+    <a href="${buttonModel.link}"
+       class="uc uc-component uc-btn ${buttonModel.buttonStyle}"
+       aria-label="${buttonModel.ariaLabel}"
+       target="${buttonModel.target}"
+       id="${buttonModel.componentId}">
+       
+       <span data-sly-test="${buttonModel.iconSelection && buttonModel.iconDisplay == 'left'}"
+             class="uc-icon uc-icon-${buttonModel.iconSelection} uc-icon-${buttonModel.iconStyle}"></span>
+
+       ${buttonModel.text @ context='html'}
+
+       <span data-sly-test="${buttonModel.iconSelection && buttonModel.iconDisplay == 'right'}"
+             class="uc-icon uc-icon-${buttonModel.iconSelection} uc-icon-${buttonModel.iconStyle} uc-icon-right"></span>
+    </a>
+</sly>
