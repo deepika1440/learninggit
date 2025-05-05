@@ -1,0 +1,45 @@
+<template data-sly-template.anchorStyle="${@ values='Model values'}">
+    <sly data-sly-test.isModal="${values.target == 'modal'}"></sly>
+
+    <!-- CreditCard Variation: use applyNow link from XF -->
+    <a data-sly-test="${values.variationCard == 'creditCard' && values.applyNow}"
+       id="${values.componentId}"
+       aria-disabled="${values.disabled @ context='text'}"
+       aria-label="${values.ariaLabel}"
+       href="${values.applyNow}"
+       target="${values.target}"
+       data-uc-modal-action="${values.isCloseModal ? 'close' : (isModal ? 'open' : '')}"
+       data-uc-modal-id="${isModal ? values.modalId : ''}"
+       data-bactmin="${values.trackingId}"
+       class="${values.customClassOverride || 't-track-body-copy-link'} ${values.buttonBorderRadius} ${values.ButtonBorderRadiusMobile} ${values.buttonBorderShadows} ${values.disabled ? 'disabled' : ''}">
+
+        <span data-sly-test="${values.iconSelection && values.iconDisplay == 'left'}"
+              class="uc-icon uc-icon-${values.iconSelection} uc-icon-${values.iconStyle}">
+        </span>
+        ${values.text @ context='html'}
+        <span data-sly-test="${values.iconSelection && values.iconDisplay == 'right'}"
+              class="uc-icon uc-icon-${values.iconSelection} uc-icon-${values.iconStyle} uc-icon-right">
+        </span>
+    </a>
+
+    <!-- Default Variation: use authored link -->
+    <a data-sly-test="${values.variationCard != 'creditCard' && values.link}"
+       id="${values.componentId}"
+       aria-disabled="${values.disabled @ context='text'}"
+       aria-label="${values.ariaLabel}"
+       href="${values.link}"
+       target="${values.target}"
+       data-uc-modal-action="${values.isCloseModal ? 'close' : (isModal ? 'open' : '')}"
+       data-uc-modal-id="${isModal ? values.modalId : ''}"
+       data-bactmin="${values.trackingId}"
+       class="${values.customClassOverride || 't-track-body-copy-link'} ${values.buttonBorderRadius} ${values.ButtonBorderRadiusMobile} ${values.buttonBorderShadows} ${values.disabled ? 'disabled' : ''}">
+
+        <span data-sly-test="${values.iconSelection && values.iconDisplay == 'left'}"
+              class="uc-icon uc-icon-${values.iconSelection} uc-icon-${values.iconStyle}">
+        </span>
+        ${values.text @ context='html'}
+        <span data-sly-test="${values.iconSelection && values.iconDisplay == 'right'}"
+              class="uc-icon uc-icon-${values.iconSelection} uc-icon-${values.iconStyle} uc-icon-right">
+        </span>
+    </a>
+</template>
