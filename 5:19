@@ -1,0 +1,9 @@
+<sly data-sly-test="${standaloneLinkModel.variation == 'creditCard'}">
+    <!-- Import the XF content based on the xfPath -->
+    <sly data-sly-use.xfContent="${'com.baml.aem.unity.core.models.XFContent'}" />
+    <sly data-sly-test="${xfContent.init(standaloneLinkModel.xfPath)}">
+        <a href="${xfContent.xfLink}" class="uc-link">
+            ${xfContent.xfText}
+        </a>
+    </sly>
+</sly>
