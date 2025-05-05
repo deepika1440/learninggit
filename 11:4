@@ -1,0 +1,36 @@
+<sly data-sly-use.image="com.baml.aem.unity.core.models.Image" />
+
+<uc-image id="${image.componentId}" version="${image.versionNumber @ context='text'}">
+  <div class="uc uc-image_wrapper" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+
+    <picture>
+      <!-- Show small image only for Default variation -->
+      <sly data-sly-test="${image.variationType == 'default'}">
+        <source media="(max-width:639px)" srcset="${image.resolvedSmallImage}" />
+      </sly>
+
+      <!-- Show medium image only for Default variation -->
+      <sly data-sly-test="${image.variationType == 'default'}">
+        <source media="(max-width:1087px)" srcset="${image.resolvedMediumImage}" />
+      </sly>
+
+      <!-- For Credit Card, use XF Large Image -->
+      <sly data-sly-test="${image.variationType == 'creditCard'}">
+        <source media="(max-width:639px)" srcset="${image.resolvedSmallImage}" />
+        <source media="(max-width:1087px)" srcset="${image.resolvedMediumImage}" />
+      </sly>
+
+      <!-- Always show the large image (from XF or default) -->
+      <img
+        class="uc-image--standard"
+        src="${image.resolvedLargeImage}"
+        alt="${image.altText}"
+        style="max-width: ${image.maxwidth || '100%' @ context='attribute'}"
+        role="img"
+        loading="${image.loadMode}"
+        aria-hidden="${image.isDecorative @ context='text'}" />
+    </picture>
+
+    <sly data-sly-call="${templates.placeholder @ isEmpty=image.empty, classAppend='cmp-image cq-dd-image'}" />
+  </div>
+</uc-image>
