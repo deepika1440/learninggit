@@ -1,0 +1,46 @@
+<!-- Show edit mode placeholder -->
+<div data-sly-test="${wcmmode.edit && !wcmmode.preview}" class="aem-helper">
+  Edit: Unity Button
+</div>
+
+<!-- Use the model -->
+<sly data-sly-use.buttonModel="com.baml.aem.unity.core.models.Button" />
+
+<!-- Variation Handling -->
+<sly data-sly-test="${buttonModel.variationCard == 'creditCard'}">
+  <!-- Render Credit Card variation -->
+  <sly data-sly-call="${buttonWithCreditCard @ values=buttonModel}" />
+</sly>
+
+<sly data-sly-test="${!buttonModel.variationCard || buttonModel.variationCard == 'default'}">
+  <!-- Render Default variation -->
+  <sly data-sly-call="${buttonWithDefault @ values=buttonModel}" />
+</sly>
+
+<!-- Default Variation Template -->
+<template data-sly-template.buttonWithDefault="${@ values}">
+  <div class="uc-btn uc-btn_container--${values.buttonAlignment}">
+    <uc-button
+      class="uc uc-component uc-btn ${values.buttonStyle}"
+      version="${values.versionNumber @ context='text'}"
+      aria-label="${values.ariaLabel}"
+      href="${values.link}"
+      target="${values.target}">
+      ${values.text @ context='html'}
+    </uc-button>
+  </div>
+</template>
+
+<!-- Credit Card Variation Template -->
+<template data-sly-template.buttonWithCreditCard="${@ values}">
+  <div class="uc-btn uc-btn_container--${values.buttonAlignment} credit-card-style">
+    <uc-button
+      class="uc uc-component uc-btn credit-card ${values.buttonStyle}"
+      version="${values.versionNumber @ context='text'}"
+      aria-label="${values.ariaLabel}"
+      href="${values.link}"
+      target="${values.target}">
+      ${values.text @ context='html'}
+    </uc-button>
+  </div>
+</template>
