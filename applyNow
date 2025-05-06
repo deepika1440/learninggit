@@ -1,0 +1,19 @@
+<sly data-sly-use.buttonModel="${'com.baml.aem.unity.core.models.Button'}">
+
+    <!-- Check if "Credit Card" is selected -->
+    <sly data-sly-test="${buttonModel.variation == 'Credit Card'}">
+        <!-- Use the injected applyNow link -->
+        <a href="${buttonModel.applyNow}">
+            ${buttonModel.text} <!-- Use the injected text for the button -->
+        </a>
+    </sly>
+
+    <!-- Default behavior if "Credit Card" is not selected -->
+    <sly data-sly-test="${buttonModel.variation != 'Credit Card'}">
+        <!-- Regular button with text and link -->
+        <a href="${buttonModel.link}">
+            ${buttonModel.text} <!-- Use the injected text for the button -->
+        </a>
+    </sly>
+
+</sly>
