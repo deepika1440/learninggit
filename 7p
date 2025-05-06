@@ -1,0 +1,22 @@
+<!-- Default variation: show regular button -->
+<sly data-sly-test="${buttonModel.variation != 'creditcard'}">
+  <sly data-sly-test="${buttonModel.buttonAlignment == 'center' || buttonModel.buttonAlignment == 'right'}"
+       data-sly-call="${buttonWithContainer @ values=buttonModel}" />
+  <sly data-sly-test="${buttonModel.buttonAlignment == 'left'}"
+       data-sly-call="${button @ values=buttonModel}" />
+</sly>
+
+<!-- Credit Card variation: use applyNow link -->
+<sly data-sly-test="${buttonModel.variation == 'creditcard' && buttonModel.applyNow}">
+  <div class="uc-btn_container uc-btn_container--${buttonModel.buttonAlignment}">
+    <a
+      id="${buttonModel.componentId}"
+      class="uc uc-component uc-btn uc-btn_${buttonModel.buttonStyle} ${buttonModel.stretchMapping} ${buttonModel.fullwidthonLargeScreens}"
+      href="${buttonModel.applyNow}"
+      target="${buttonModel.target}"
+      aria-label="${buttonModel.ariaLabel}"
+      data-bactmin="${buttonModel.trackingId}">
+      ${buttonModel.text}
+    </a>
+  </div>
+</sly>
