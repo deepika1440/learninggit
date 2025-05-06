@@ -1,0 +1,32 @@
+<sly data-sly-use.buttonModel="com.baml.sem.unity.core.models.Button">
+
+    <!-- Credit Card variation -->
+    <sly data-sly-test="${buttonModel.variationCard == 'creditCard'}">
+        <div class="uc-btn_container uc-btn_container--${buttonModel.buttonAlignment}">
+            <uc-button
+                version="${buttonModel.versionNumber @ context='text'}"
+                class="uc uc-component uc-btn ${buttonModel.buttonStyle} uc-btn_${buttonModel.stretchMapping} uc-btn_${buttonModel.fullwidthOnLargeScreens}">
+                <a href="javascript:void(0);"
+                   onclick="applyNow('${buttonModel.xfpath}')"
+                   class="${buttonModel.customClassOverride || 't-track-body-copy-link'} ${buttonModel.buttonBorderRadius} ${buttonModel.buttonBorderRadiusMobile} ${buttonModel.buttonBorderShadows}">
+                    ${buttonModel.text @ context='html'}
+                </a>
+            </uc-button>
+        </div>
+    </sly>
+
+    <!-- Default variation -->
+    <sly data-sly-test="${buttonModel.variationCard != 'creditCard'}">
+        <div class="uc-btn_container uc-btn_container--${buttonModel.buttonAlignment}">
+            <uc-button
+                version="${buttonModel.versionNumber @ context='text'}"
+                class="uc uc-component uc-btn ${buttonModel.buttonStyle} uc-btn_${buttonModel.stretchMapping} uc-btn_${buttonModel.fullwidthOnLargeScreens}">
+                <a href="${buttonModel.link}"
+                   class="${buttonModel.customClassOverride || 't-track-body-copy-link'} ${buttonModel.buttonBorderRadius} ${buttonModel.buttonBorderRadiusMobile} ${buttonModel.buttonBorderShadows}">
+                    ${buttonModel.text @ context='html'}
+                </a>
+            </uc-button>
+        </div>
+    </sly>
+
+</sly>
