@@ -1,0 +1,19 @@
+<a
+  data-sly-test="${standaloneLinkModel.variationCard == 'creditCardCompare' && standaloneLinkModel.comparable}"
+  id="${standaloneLinkModel.componentId}"
+  href="/compare?cardId=${standaloneLinkModel.cardId}"
+  aria-label="${standaloneLinkModel.ariaLabel}"
+  data-tracking-name="${standaloneLinkModel.tagName}"
+  class="uc-link_linkStyle ${standaloneLinkModel.customClassOverride || 't-track-body-copy-link'} uc-text"
+>
+  <!-- Optional Left Icon -->
+  <span data-sly-test="${standaloneLinkModel.iconSelection && standaloneLinkModel.iconDisplay == 'left'}"
+        class="uc-icon uc-icon-${standaloneLinkModel.iconSelection}"></span>
+
+  <!-- Link Text -->
+  <span class="uc-link--animation">${standaloneLinkModel.text}</span>
+
+  <!-- Optional Right Icon -->
+  <span data-sly-test="${standaloneLinkModel.iconSelection && standaloneLinkModel.iconDisplay == 'right'}"
+        class="uc-icon uc-icon-${standaloneLinkModel.iconSelection} uc-icon-right"></span>
+</a>
