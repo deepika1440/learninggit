@@ -1,0 +1,37 @@
+PostConstruct
+
+protected void init() {
+
+LF (resourcen null && request != null) {
+
+resource request.getResource();
+
+Valusñap property resource.adaptTo(ValueNap.class);
+
+Bede propertylode resource.adaptTo(Node.class);
+
+try L
+
+if (propertyNode.hasProperty("cerdSelection")) {
+
+Log.debug("inside propertynode.." propertyNode);
+
+String cardXF property.get("cordialection", String.class);
+
+Log.debug("Print Card XF..", cardXF):
+
+Resourcellesolver resourceñesolver resource.getResourceResulver();
+
+if (cardXF = null && StringUtils.isNotBlank(cardX)) {
+
+Log.debug("inside carcXF..,cardXF):
+
+Resource xfContent resourceResolver.getResource(cardXF/jcr:conten
+
+f(xfContent Janull)
+
+log.debug("Inside xfContent..", xfContent);
+
+CardXFPage addReserditanuxfContent.adaptTo(CardXFPage.class);
+
+addleward Earningüption addRewardItems.getAddReward Earning Option();
