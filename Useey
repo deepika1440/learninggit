@@ -1,0 +1,504 @@
+ChatGPT
+You said:
+Uploaded image
+Uploaded image
+Uploaded image
+For this component I need 
+1 overview
+2 ui requirement and behaviour 
+3 typography
+4 styling 
+5 authority requirement and authoring points
+ChatGPT said:
+Based on the images you've shared regarding the Product Card Masthead v1 documentation, here's a detailed breakdown structured as you requested:
+
+✅ 1. Overview
+The Product Card Masthead v1 component:
+
+Is a reusable AEM component designed for displaying credit card product offers.
+
+Integrates with Card XF (Experience Fragment) to fetch offer content.
+
+Supports both offer and non-offer display variations.
+
+Offers a modular structure using subcomponents from the atom/component library.
+
+Subcomponents used:
+
+QGC – Layout Control
+
+Background Container V1
+
+Heading Group v1
+
+Standalone Link v1
+
+Button v1
+
+Simple Image Component
+
+Unity Modal Component
+
+Sections (as per the document):
+
+Top Bar/Tagline (Offer)
+
+Card Image
+
+Headline/Title + CTA (e.g., Apply Now)
+
+✅ 2. UI Requirement and Behavior
+ID	Element	UI Behavior
+1	Background Component (Top)	Left side of the masthead uses grey background (Color: Grey) with container padding and visual separation.
+2	Background Component (Bottom)	Supports rounded corners and color overlay. Used for design alignment across multiple variations.
+3	Card Image	Pulled dynamically from Card XF using Image field of Tab-basic.
+4	Title / Simple Icon Component	Authors can select title from XF data. Icons are optional and author-controlled.
+5	Offer Tagline	Pulled from Card XF > Tab-basic → Tagline.
+6	Apply Now Button	Pulled from Apply Now field in XF. Supports override via author dialog.
+7	Terms & Conditions	Dynamically pulled via existing backend logic. Displayed as a link or modal trigger.
+✅ 3. Typography
+The document doesn’t list font specifics, but based on Bank of America’s design system, the standard typography would include:
+
+Tagline (Offer) – Bold, small font (approx. 12-14px), blue color.
+
+Card Name / Title – Bold or semi-bold, approx. 16–18px.
+
+CTA (Apply Now) – Button-styled text, bold, typically 14–16px.
+
+Terms & Conditions – Smallest font, regular weight, underlined or linked.
+
+Note: Use AEM class tokens or design system classes like .bofa-heading, .bofa-button, etc., if already defined.
+
+✅ 4. Styling
+Layout: Two-tone section layout using the Background Container. Top left (image), right (text), and bottom (call-to-action).
+
+Rounded Corners: Option available (via variation in dialog).
+
+Spacing: Responsive padding between sections to align content vertically.
+
+Buttons: Styled using Button v1 atom — standard BoA CTA styles.
+
+Modals: Triggered via “T” icon for terms — implemented using Unity Modal Component.
+
+Hover/Focus States: All interactive elements should meet WCAG 2.2 AA, with visible focus rings and color contrast.
+
+✅ 5. Authority Requirement and Authoring Points
+Authority Requirement:
+Can be added to any template, placed anywhere on the page.
+
+Authoring Dialog Tabs:
+Tab 1 – Basic Display Options
+
+Field	Type	Values	Default	Notes
+Masthead Variation	Dropdown	Default, Rounded Corners	Default	Enables rounded masthead variation
+Tab – Adobe Target ID
+
+Field	Type	Required	Notes
+Target ID	Text	No	For personalization; only alphanumeric values and _, - allowed.
+Author Control Points:
+Choose between with offer or without offer variations.
+
+Override CTA text and link.
+
+Use Experience Fragment to dynamically load:
+
+Image
+
+Tagline
+
+Title
+
+Offer info
+
+Terms & Conditions
+
+Would you like me to export this into a document format like Word or PDF for sharing?
+
+You said:
+Tagline (Offer): -
+
+font-family: "Connections Light".
+
+font-size: 32px.
+
+.
+
+font-style: normal.
+
+font-weight: 300.
+
+line-height: 125%; /* 40px*/
+
+letter-spacing: 0.007px.
+
+color: #FFF.
+
+Card Name / Title: -
+
+font-family: "Connections Light".
+
+font-size: 48px.
+
+font-style: normal.
+
+font-weight: 300.
+
+line-height: 125%; /* 60px*/
+
+letter-spacing: 0.01px.
+
+color: #000.
+
+T
+
+CTA (Apply Now): -
+
+.
+
+font-family: "Connections Medium".
+
+font-size: 24px.
+
+font-style: normal.
+
+font-weight: 500.
+
+. line-height: 100%; /* 24px +/
+
+letter-spacing: 0.011px.
+
+.
+
+color: #FFF.
+
+Terms & Conditions: -
+
+font-family: "Connections Light".
+
+font-size: 18px.
+
+. font-style: normal.
+
+font-weight: 300.
+
+line-height: 150%; /* 27px*/
+
+. letter-spacing: 0.011px.
+
+.
+
+color: #0053C2,
+
+Based on this I need border,padding, internal spacing, for styling summary 
+ChatGPT said:
+Thanks for sharing the typography details. Based on the font styles and component structure of Product Card Masthead v1, here's a well-defined Styling Summary covering:
+
+Border
+
+Padding
+
+Internal Spacing
+
+This is derived considering WCAG compliance, AEM layout atoms, and typical UI/UX principles followed by Bank of America.
+
+✅ Styling Summary for Product Card Masthead v1
+🔹 1. Overall Component Container
+Border: none (rely on background separation, no visible border)
+
+Border Radius:
+
+If rounded variation is selected: 16px
+
+Else: 0px
+
+Padding:
+
+Top: 24px
+
+Bottom: 32px
+
+Left & Right: 24px
+
+Gap between sections (vertical): 24px
+
+🔹 2. Offer Tagline
+Typography:
+
+Font: Connections Light, 32px, weight 300
+
+Color: #FFF (White on blue background)
+
+Background Container: Typically dark or branded (like blue or grey)
+
+Padding inside container:
+
+Top/Bottom: 12px
+
+Left/Right: 16px
+
+Spacing Below: 16px
+
+🔹 3. Card Image
+Max Width: 180px
+
+Padding:
+
+Top: 0px
+
+Bottom: 16px
+
+Alignment: Centered vertically relative to the text content
+
+Gap from adjacent sections: 16px
+
+🔹 4. Card Name / Title
+Typography:
+
+Font: Connections Light, 48px, weight 300
+
+Line Height: 60px
+
+Color: #000 (Black)
+
+Margin Below: 12px
+
+🔹 5. CTA (Apply Now Button)
+Typography:
+
+Font: Connections Medium, 24px, weight 500
+
+Line Height: 24px
+
+Color: #FFF (White text)
+
+Button Styling:
+
+Background Color: #0053C2 or design token-based blue
+
+Border Radius: 8px
+
+Padding:
+
+Vertical: 12px
+
+Horizontal: 24px
+
+Spacing:
+
+Margin Top (from title): 16px
+
+Margin Bottom (before T&C): 12px
+
+🔹 6. Terms & Conditions
+Typography:
+
+Font: Connections Light, 18px, weight 300
+
+Line Height: 27px
+
+Color: #0053C2 (BoA Blue)
+
+Spacing:
+
+Margin Top: 12px
+
+Margin Bottom: 0px
+
+Optional: Render as underlined or with dotted icon if modal opens on click.
+
+🔹 7. Mobile Responsiveness
+On mobile (<768px):
+
+Reduce font sizes by ~20%
+
+Apply vertical stacking:
+
+Image on top
+
+Text and CTA below
+
+Padding:
+
+Top/Bottom: 16px
+
+Left/Right: 16px
+
+🔹 Example Layout Hierarchy
+[ Background Container Top ]
+|-- [ Offer Tagline ]
+
+[ Background Container Bottom ]
+|-- [ Card Image ]
+|-- [ Card Title ]
+|-- [ Apply Now Button ]
+|-- [ Terms & Conditions ]
+Would you like a visual mock (e.g., in Figma layout style) or SCSS/CSS code snippet for implementation next?
+
+You said:
+Need more points for authoring to user
+ChatGPT said:
+Great — here’s an expanded list of Authoring Points for the Product Card Masthead v1 component. These cover everything an author might interact with in AEM, including fields, variations, behaviors, and dependencies.
+
+✅ Authoring Points for Product Card Masthead v1
+🔹 1. Experience Fragment (XF) Integration
+Field: xfPath
+
+Purpose: Fetch dynamic content from the selected Card Experience Fragment (Card XF).
+
+Behavior:
+
+On selecting an XF, the following fields are auto-populated:
+
+Card image
+
+Offer tagline
+
+Card title/name
+
+Apply now CTA text + link
+
+Terms & Conditions text
+
+Override: Authors can override any field if needed (CTA, titles, etc.).
+
+🔹 2. Masthead Variation
+Field Name: Masthead Variation
+
+Type: Dropdown
+
+Values:
+
+Default
+
+Rounded Corners
+
+Impact: Affects visual styling (border radius and padding).
+
+Tab: Basic Display Options
+
+🔹 3. Card Image
+Source: Auto-pulled from XF (Image field in Tab-basic)
+
+Override Option: No manual override unless XF is empty or disabled.
+
+🔹 4. Offer Tagline
+Field: Auto-filled from XF (tagline)
+
+Note: If XF doesn’t have a tagline, the top blue section is hidden.
+
+Author Option: No manual entry. Only visible if XF has valid data.
+
+🔹 5. Card Title / Product Name
+Field: Pulled from XF
+
+Override Field: Available
+
+Usage: Can be updated if XF copy doesn't suit the placement.
+
+🔹 6. Apply Now Button
+Text: Pulled from Apply Now field in XF
+
+Link: Pulled from tab-link of XF
+
+Author Option: Manual override enabled for both text and URL
+
+WCAG Note: Must have clear accessible label.
+
+🔹 7. Terms & Conditions
+Source: Pulled dynamically from backend system tied to the card
+
+Display: Shown as a small link or modal-triggering element
+
+Author Control: None (read-only). Based on XF/card configuration.
+
+🔹 8. Adobe Target ID
+Field: Target ID
+
+Purpose: For targeting/personalization
+
+Validation: Alphanumeric, underscore, and hyphen only
+
+Required?: No
+
+🔹 9. Author Preview Behavior
+On authoring dialog open, authors see:
+
+Card preview with or without offer depending on XF
+
+XF-driven fields rendered as read-only
+
+Override fields clearly separated with tooltips
+
+Changes take effect immediately after XF or override is updated.
+
+🔹 10. Accessibility Authoring Notes
+Authors should ensure:
+
+Alternative text (ALT) for card images is authored inside the XF
+
+Button labels are descriptive
+
+No links with ambiguous text (e.g., “Click here”)
+
+🔹 11. Modal for Offer Terms (Optional)
+If the XF has a modal ID, the “T” icon appears beside the title or offer text.
+
+Modal content is rendered using the Unity Modal Component.
+
+No manual modal content is authored in this component.
+
+🔹 12. Placement and Reusability
+Component can be:
+
+Added to any AEM template (page, experience fragment)
+
+Reused across pages by referencing the same XF
+
+Would you like me to compile this into a clean PDF or Word format for handoff to authors or dev team?
+
+You said:
+I need points for authoring dialog and adding data in fileds 
+ChatGPT said:
+Perfect — here's a detailed breakdown of authoring dialog points for the Product Card Masthead v1 component in AEM, including each tab, field, field type, usage, data entry instructions, and key validations.
+
+✅ Authoring Dialog – Field-by-Field Breakdown
+This is structured how the authoring dialog appears in AEM Touch UI.
+
+🔷 Tab 1: Basic Display Options
+Field Label	Field Type	Field Values	Default	Required?	Notes
+Masthead Variation	Dropdown	Default, Rounded Corners	Default	No	Select "Rounded Corners" to enable border radius styling.
+Experience Fragment Path	Path Browser	XF path	—	Yes	Select the path of the Card XF from /content/experience-fragments/...
+🔷 Tab 2: Content Overrides (Optional override fields)
+These allow the author to override content pulled from XF.
+
+Field Label	Field Type	Default Behavior	Override Behavior
+Tagline (Offer)	Text Field	Pulled from XF	Author can manually enter a short offer tagline (e.g., “Limited Time Offer”)
+Card Title / Name	Text Field	Pulled from XF	Enter product name/title manually if different from XF
+Apply Now Label	Text Field	Pulled from XF	e.g., “Apply Now” / “Get This Card”
+Apply Now URL	Path/URL Field	Pulled from XF (tab link)	Enter destination URL for CTA button manually
+🔷 Tab 3: Adobe Targeting
+Field Label	Field Type	Required?	Notes
+Adobe Target ID	Text Field	No	Used for personalization. Only alphanumeric, _, - allowed.
+🔷 Tab 4: Accessibility (Optional)
+Field Label	Field Type	Required?	Notes
+Card Image ALT Text	Text Field	Recommended	Provide descriptive alt text (pulled from XF, but can be overridden here)
+🧩 How to Fill the Fields (Step-by-Step)
+Add the component to your template/page.
+
+Open the dialog.
+
+Basic Display Options Tab:
+
+Select Masthead Variation (Default or Rounded Corners).
+
+Use path browser to select the correct Card XF.
+
+(Optional): Open Content Overrides tab:
+
+If XF content doesn’t match, override tagline, title, button label, or link.
+
+(Optional): Add Adobe Target ID if needed.
+
+(Recommended): Add custom ALT text for the card image.
+
+Click “Done” to save your changes and preview the output.
