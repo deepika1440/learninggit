@@ -1,0 +1,17 @@
+Border: none (rely on background separation, no visible border)
+
+Border Radius:
+
+If rounded variation is selected: 16px
+
+Else: 0px
+
+Padding:
+
+Top: 24px
+
+Bottom: 32px
+
+Left & Right: 24px
+
+Gap between sections (vertical): 24px
