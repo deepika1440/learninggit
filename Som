@@ -1,0 +1,72 @@
+On desktop devices, the elements are arranged horizontally. The card image appears on the left, with the tagline, title, and CTA button aligned to the right. The Terms & Conditions link is displayed below the CTA, and spacing is consistent across columns.
+
+3. Mobile Presentation
+On mobile devices, all elements are stacked vertically and centered. The card image appears first, followed by the tagline, title, CTA button, and Terms & Conditions link. The layout adapts responsively with reduced font sizes and padding for optimal readability📱 Mobile Presentation
+📐 Layout & Structure
+Single-column layout (stacked vertically)
+
+Card Image (Top)
+
+Tagline (if exists)
+
+Card Title
+
+CTA Button
+
+Terms & Conditions
+
+Order Priority:
+
+Tagline
+
+Image
+
+Title
+
+CTA
+
+T&C
+
+📏 Spacing & Dimensions
+Card Container Width: 100%, padding 16px all around
+
+Image: Full width or centered
+
+You said:
+only 3 lines for desktop and mobile
+ChatGPT said:
+Sure! Here's a concise 3-line summary for both:
+
+💻 Desktop Presentation
+Two-column layout: image left, content right with vertical alignment.
+
+Typography: Large title (48px), tagline (32px), and CTA button (24px).
+
+Spacing: 24–32px gaps between elements, full-width max 1200px layout.
+
+📱 Mobile Presentation
+Single-column stacked layout: image → tagline → title → CTA → T&C.
+
+Font sizes scale down (~20% smaller), content centered or full-width.
+
+Padding: 16px sides, vertical spacing 16–24px between sections.
+
+You said:
+2.2 Desktop Presentation
+
+I
+
+On desktop devices, the elements are arranged horizontally. The Icon is, the Text positioned next to it, and Link is on the far right. The separator line sits underneath this group.
+
+3 Mobile presentation
+
+On mobile devices, element is stacked and centered vertically. The authored text is stacked above the standalone Link. The icon is not shown
+Some one added to their story I need this like format 
+ChatGPT said:
+Here’s your content rewritten in the same structured format as your example:
+
+2.2 Desktop Presentation
+On desktop devices, the elements are arranged horizontally. The card image appears on the left, with the tagline, title, and CTA button aligned to the right. The Terms & Conditions link is displayed below the CTA, and spacing is consistent across columns.
+
+3. Mobile Presentation
+On mobile devices, all elements are stacked vertically and centered. The card image appears first, followed by the tagline, title, CTA button, and Terms & Conditions link. The layout adapts responsively with reduced font sizes and padding for optimal readability
