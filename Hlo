@@ -1,0 +1,123 @@
+Skip to content
+Open sidebar
+
+ChatGPT
+You said:
+Uploaded image
+Uploaded image
+Uploaded image
+For this component I need 
+1 overview
+2 ui requirement and behaviour 
+3 typography
+4 styling 
+5 authority requirement and authoring points
+ChatGPT said:
+Based on the images you've shared regarding the Product Card Masthead v1 documentation, here's a detailed breakdown structured as you requested:
+
+✅ 1. Overview
+The Product Card Masthead v1 component:
+
+Is a reusable AEM component designed for displaying credit card product offers.
+
+Integrates with Card XF (Experience Fragment) to fetch offer content.
+
+Supports both offer and non-offer display variations.
+
+Offers a modular structure using subcomponents from the atom/component library.
+
+Subcomponents used:
+
+QGC – Layout Control
+
+Background Container V1
+
+Heading Group v1
+
+Standalone Link v1
+
+Button v1
+
+Simple Image Component
+
+Unity Modal Component
+
+Sections (as per the document):
+
+Top Bar/Tagline (Offer)
+
+Card Image
+
+Headline/Title + CTA (e.g., Apply Now)
+
+✅ 2. UI Requirement and Behavior
+ID	Element	UI Behavior
+1	Background Component (Top)	Left side of the masthead uses grey background (Color: Grey) with container padding and visual separation.
+2	Background Component (Bottom)	Supports rounded corners and color overlay. Used for design alignment across multiple variations.
+3	Card Image	Pulled dynamically from Card XF using Image field of Tab-basic.
+4	Title / Simple Icon Component	Authors can select title from XF data. Icons are optional and author-controlled.
+5	Offer Tagline	Pulled from Card XF > Tab-basic → Tagline.
+6	Apply Now Button	Pulled from Apply Now field in XF. Supports override via author dialog.
+7	Terms & Conditions	Dynamically pulled via existing backend logic. Displayed as a link or modal trigger.
+✅ 3. Typography
+The document doesn’t list font specifics, but based on Bank of America’s design system, the standard typography would include:
+
+Tagline (Offer) – Bold, small font (approx. 12-14px), blue color.
+
+Card Name / Title – Bold or semi-bold, approx. 16–18px.
+
+CTA (Apply Now) – Button-styled text, bold, typically 14–16px.
+
+Terms & Conditions – Smallest font, regular weight, underlined or linked.
+
+Note: Use AEM class tokens or design system classes like .bofa-heading, .bofa-button, etc., if already defined.
+
+✅ 4. Styling
+Layout: Two-tone section layout using the Background Container. Top left (image), right (text), and bottom (call-to-action).
+
+Rounded Corners: Option available (via variation in dialog).
+
+Spacing: Responsive padding between sections to align content vertically.
+
+Buttons: Styled using Button v1 atom — standard BoA CTA styles.
+
+Modals: Triggered via “T” icon for terms — implemented using Unity Modal Component.
+
+Hover/Focus States: All interactive elements should meet WCAG 2.2 AA, with visible focus rings and color contrast.
+
+✅ 5. Authority Requirement and Authoring Points
+Authority Requirement:
+Can be added to any template, placed anywhere on the page.
+
+Authoring Dialog Tabs:
+Tab 1 – Basic Display Options
+
+Field	Type	Values	Default	Notes
+Masthead Variation	Dropdown	Default, Rounded Corners	Default	Enables rounded masthead variation
+Tab – Adobe Target ID
+
+Field	Type	Required	Notes
+Target ID	Text	No	For personalization; only alphanumeric values and _, - allowed.
+Author Control Points:
+Choose between with offer or without offer variations.
+
+Override CTA text and link.
+
+Use Experience Fragment to dynamically load:
+
+Image
+
+Tagline
+
+Title
+
+Offer info
+
+Terms & Conditions
+
+Would you like me to export this into a document format like Word or PDF for sharing?
+
+
+
+No file chosenNo file chosen
+ChatGPT can make mistakes. Check important info. See Cookie Preferences.
