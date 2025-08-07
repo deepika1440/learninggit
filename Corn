@@ -1,0 +1,140 @@
+ChatGPT
+You said:
+Uploaded image
+Uploaded image
+Uploaded image
+Uploaded image
+Overview
+
+The component is used to add Credit Card information to pages and define the visual layout. Fields from Card XF are used to poputate the Card Component in the Card) varation as indicated below
+
+Variations
+
+Summary
+
+Compare The
+
+Compare Banner
+
+Compare Add
+
+Product
+
+Recommended
+I Need 1.overview
+2.requirements behaviour 
+3.business/functional requirements 
+4.authoring requirement 
+5.typograohy
+6.styling
+ChatGPT said:
+Based on your screenshots and request, here's a structured breakdown for the Credit Card Component v1 covering:
+
+1. Overview
+The Credit Card Component v1 is designed to visually represent credit card offerings on web pages using data pulled from Card Experience Fragments (Card XF). It supports multiple visual styles (Summary, Compare Tile, Compare Banner, Compare Add, Product, and Recommended) and enables authors to configure both appearance and content overrides via dialog fields.
+
+2. Requirements Behavior
+Dynamic Rendering: Based on the selected "Style Type", the component dynamically changes layout and content fields.
+
+Content Population: Fields such as headlines, taglines, benefits, rewards, and buttons are fetched from the linked Card XF.
+
+WCAG 2.2 AA Compliance: The component adheres to accessibility guidelines including keyboard navigation, screen reader support, contrast, and readable structure.
+
+Compare ID: Unique identifier used in variations like Compare Add and Compare Table to map cards accurately.
+
+3. Business/Functional Requirements
+Requirement Type	Description
+Variations	Summary, Compare Tile, Compare Banner, Compare Add, Product, Recommended
+Component Source	Content is fetched from Card XF
+Key Elements	Image, Headline, Tagline, Offer Text, Benefits, Rewards, CTA Buttons
+Compare Behavior	Compare Add button maps card to Compare Table using Compare ID
+Action Buttons	Modal or page links; populated via Card XF
+Mobile/Desktop View	Layout adjusts responsively with simplified mobile structure
+Link Handling	Buttons and links can be static or trigger modals
+4. Authoring Requirements
+a. Properties Tab
+Field Label	Type	Values	Required	Notes
+Style Type	Dropdown	Summary, Compare Tile, Compare Banner, Compare Add, Product, Recommended	Yes	Determines visual layout and styling
+b. Overrides Tab
+Field Label	Type	Required	Notes
+Headline	Rich Text	No	Allows override of Headline from Card XF
+Tagline	Rich Text	No	Allows override of Tagline from Card XF
+5. Typography
+Element	Styling Notes
+Headline	Pulled from Card XF or overridden; typically styled as H2 or H3 depending on layout
+Tagline	Pulled from Card XF or overridden
+Bonus Offer Text	Prominently displayed; fixed font size and bold styling
+Benefit Highlights	Icons + Text – multiline support
+CTA Buttons	Label from Card XF; styled consistently with site buttons
+6. Styling
+Corners: Rounded corners for cards
+
+Borders: Gray border with drop shadow for card frames
+
+Spacing: Consistent padding and margin across components
+
+Icons: Positioned left of text; not split across lines
+
+Mobile Behavior: Cards stack vertically with simplified view and removed images in some variations
+
+Buttons: Consistent size and position, with hover/focus styles
+
+Let me know if you want this in a downloadable document (Word/PDF) or want the mobile vs desktop view breakdown too.
+
+You said:
+Need authoring points and how to fill the fields
+ChatGPT said:
+Here’s a detailed breakdown of the Authoring Requirements for the Credit Card Component v1 including what fields are present, how to fill them, and what each one does:
+
+🔧 Authoring Points – How to Fill Fields
+The component authoring is divided into two tabs:
+
+1. Tab: Properties
+Field Label	Field Type	Values	Required	Default	How to Fill	Purpose
+Style Type	Dropdown	Summary, Compare Tile, Compare Banner, Compare Add, Product, Recommended	✅ Yes	N/A	Select based on the visual layout needed for the card.	Controls layout and styling of the component.
+xfPath (not shown but used)	Path Browser	N/A	✅ Yes	N/A	Browse and select the Card XF path (e.g. /content/experience-fragments/...)	Populates card data from the selected Card XF.
+2. Tab: Overrides
+These allow you to override the content that is already authored inside the Card XF.
+
+Field Label	Field Type	Required	How to Fill	Purpose
+Headline	Rich Text	❌ No	Enter headline text if you want to override the XF headline.	Overrides XF's headline.
+Tagline	Rich Text	❌ No	Enter tagline text if you want to override the XF tagline.	Overrides XF's tagline.
+✍️ How to Author the Component Step-by-Step
+Drag & Drop the Component into your page from the component browser.
+
+Open Dialog, go to the Properties tab:
+
+Style Type → Choose one of:
+
+Summary: Full card with benefits, CTA, rewards
+
+Compare Tile: For table-style compare view
+
+Compare Banner: Narrow horizontal layout
+
+Compare Add: Compact layout with "Add to compare"
+
+Product: Highlighted card for product section
+
+Recommended: For promoted/recommended cards
+
+xfPath → Use path browser to select the XF page for this card.
+
+Switch to Overrides Tab (Optional):
+
+Headline: Add if you want to show different headline than in XF
+
+Tagline: Add if you want to override the tagline in the card
+
+Save and Close the dialog.
+
+Preview the Page to confirm correct rendering of layout and content.
+
+✅ Best Practices
+Always validate XF content before linking it (correct fields filled in XF).
+
+Only use overrides when necessary – prefer managing primary content inside XF.
+
+Use correct Style Type for consistency across pages.
+
+Maintain accessibility guidelines (e.g., meaningful headlines, clear button labels).
