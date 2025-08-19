@@ -1,0 +1,38 @@
+ChatGPT
+You said:
+Uploaded image
+Enable expand all functionality I added as per new requirements I need some points why we added in document 
+ChatGPT said:
+Got it 👍 You added the “Enable Expand All functionality” option in the Unity Accordion dialog as per new requirements.
+Here are some points you can put in your documentation about why it was added:
+
+Purpose of “Enable Expand All Functionality”
+Improved User Experience
+
+Allows users to expand all accordion panels at once instead of opening them one by one.
+
+Useful when users want to quickly scan all available content without multiple clicks.
+
+Accessibility (ADA/WCAG Compliance)
+
+Reduces cognitive load for screen reader users who would otherwise need to navigate each accordion individually.
+
+Provides an inclusive way to consume large sets of content efficiently.
+
+Business Requirement Alignment
+
+Stakeholders requested the option to display all content at once for scenarios like FAQs, product comparisons, and detailed guides.
+
+Supports both use cases: compact view (default accordion) and full expanded view (when enabled).
+
+Flexibility for Authors
+
+Content authors can choose whether the accordion behaves traditionally (one section at a time) or provides an “expand all” mode.
+
+No need for custom code or additional components—controlled directly via dialog configuration.
+
+Consistency Across Components
+
+Matches functionality already present in similar UI patterns (e.g., tab groups, collapsible sections).
+
+Ensures consistent interaction patterns across the site.
