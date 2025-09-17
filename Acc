@@ -1,0 +1,128 @@
+
+
+ChatGPT
+You said:
+Hide border top and bottom in AEM 
+<hideBorder TopBottom
+
+ctheme
+
+jcr:primaryType="nt:unstructured"
+
+sling:resourceType "granite/ui/components/coral/foundation/form/checkbox"
+
+fieldDescription"When checked will hide border top and bottom"
+
+name="./hideBorderTopBottom"
+
+text-"Hide border top and bottom"
+
+uncheckedValues" (Boolean) false"
+
+value="(Boolean)true"/>
+&.accordion no-border {
+
+96+
+
+97+
+
+98.
+
+border-top: попе
+
+Arlast-child (
+
+99++
+
+border-bottom: non
+e;
+
+100+
+
+101.
+data-aria-label-"$(accordion arlalabelExpandCollapse)"
+
+sly data-sly test hideflorderTopBottom"$(accordion hideßurder Topbottom true accordion no-border
+
+accoralium-item
+
+isopen"$(item.defaultOpen || (wcomode.edit || wommode.preview))"
+
+Lo-accordion-SitesList. Index)"
+
+Lo-accordion-StitemList Index)"
+
+class="hideborder TopButton)
+
+section data-sly-element="$(accordion
+I need to do document for this 
+Need points like 
+1.improbed user experience 
+2.accessibility
+3.business requirement alignment 
+4.flexibility for authors
+5.co sistency across components 
+And 
+For css points need 
+1.added updated classes 
+2.state handling 
+3.accesiblity styles
+ChatGPT said:
+Got it 👍 You want to prepare documentation points for your AEM change (hide top & bottom border for Accordion component), including functional/business points and CSS points. Here’s a clean draft you can use:
+
+📑 Documentation – Hide Border Top & Bottom for Accordion Component
+Functional / Business Justification
+Improved User Experience
+
+Provides a cleaner design option by removing unnecessary borders, especially in scenarios where multiple accordions are stacked together.
+
+Reduces visual clutter, improving readability.
+
+Accessibility
+
+Ensures border removal does not interfere with focus states or screen reader experience.
+
+Maintains WCAG 2.2 AA compliance by handling visual focus and spacing correctly.
+
+Business Requirement Alignment
+
+Meets design specifications requested by business stakeholders for a modern, minimal UI.
+
+Provides brand consistency with digital style guides.
+
+Flexibility for Authors
+
+Authors can enable/disable top and bottom borders through a simple dialog checkbox (hideBorderTopBottom) without code changes.
+
+Allows use of a single Accordion component for multiple layout requirements.
+
+Consistency Across Components
+
+Implements border handling in line with other components that offer border visibility options.
+
+Establishes reusable styling patterns across the site.
+
+CSS / Technical Implementation Points
+Added / Updated Classes
+
+Introduced accordion--no-border (or similar) class applied when hideBorderTopBottom is checked.
+
+Updated SCSS/CSS rules to apply conditional border removal.
+
+.accordion--no-border {
+  border-top: none;
+}
+.accordion--no-border:last-child {
+  border-bottom: none;
+}
+State Handling
+
+Conditional data-sly-test ensures class is only applied when author selects the checkbox.
+
+Does not impact default accordion behavior when the option is not selected.
+
+Accessibility Styles
+
+Borders removed without affecting focus outlines or hover states.
+
+Retains padding and spacing so that visual grouping remains clear even without borders.
