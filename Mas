@@ -1,0 +1,41 @@
+
+
+ChatGPT
+You said:
+Uploaded image
+Need points for mobile flip stack order
+1 improved user experience 
+2 accessibility 
+3 business requirements alignment 
+4 flexibility for authors 
+5 consistency across components 
+
+
+And css points 
+1. Added updated classes 
+2. State handling 
+3.accessibulirty styles
+ChatGPT said:
+Got it 👍. Based on the mobile flip stacking order you showed in the dialog XML, here are the points you can use:
+
+📱 Functional / Business Points
+Improved User Experience – On mobile, users can view the text before or after the image depending on readability and content importance.
+
+Accessibility – Logical stacking order ensures screen readers follow the correct reading flow (image → text or text → image).
+
+Business Requirement Alignment – Supports marketing or compliance needs where content hierarchy must change for smaller devices.
+
+Flexibility for Authors – Authors can toggle the stacking order without code changes.
+
+Consistency Across Components – The option ensures uniform behavior across all components that use images + text blocks.
+
+🎨 CSS / Frontend Implementation Points
+Added Updated Classes – Example: .flip-order or .stack-text-top applied conditionally based on the toggle.
+
+State Handling – Use modifiers (.is-flipped, .default-order) to switch between stacking modes.
+
+Accessibility Styles – Maintain proper contrast, spacing, and avoid content overlap when order changes.
+
+Responsive Media Queries – Apply flex-direction: column-reverse; (or grid order) only for mobile breakpoints.
+
+Fallback Handling – Ensure that even without JS/CSS, the default stacking order is preserved logically.
