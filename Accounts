@@ -1,0 +1,57 @@
+<uc-accordion
+    data-sly-use.accordion="com.baml.aem.core.models.unity.Accordion"
+    version="${accordion.versionNumber @ context='text'}"
+    class="uc uc-component ${accordion.customClassOverride || 't-track-uc-accordion'} 
+           uc-accordion_${accordion.topMargin} 
+           uc-accordion_${accordion.bottomMargin} 
+           uc-accordion_${accordion.toggleIcon} 
+           theme-${accordion.theme}"
+    id="${accordion.accordionId}"
+    data-tracking-name="${accordion.tagName}"
+    data-expand-collapse="${accordion.enableExpandCollapse}"
+    data-expand-all-copy="${accordion.expandAllCopy || 'Expand all' @ i18n}"
+    data-collapse-all-copy="${accordion.collapseAllCopy || 'Collapse all' @ i18n}"
+    data-expand-all-tag="${accordion.expandAllTag}"
+    data-collapse-all-tag="${accordion.collapseAllTag}"
+    data-aria-label="${accordion.ariaLabelExpandCollapse}">
+
+    <sly data-sly-test.hideBorderTopBottom="${accordion.hideBorderTopBottom ? 'accordion_no-border' : ''}"/>
+
+    <div data-sly-repeat.item="${accordion.panels}">
+
+        <!-- Show only in edit dialog, not in preview or publish -->
+        <div class="aem-helper aem-helper--disabled-content"
+             data-sly-test="${wcmmode.edit && !wcmmode.preview}">
+            Item ${itemList.count} start
+        </div>
+
+        <uc-accordion-item
+            isopen="${item.defaultOpen || (wcmmode.edit || wcmmode.preview)}"
+            id="accordion-${itemList.index}"
+            class="${hideBorderTopBottom}">
+
+            <section data-sly-element="${accordion.headingElement @ context='elementName'}"
+                     class="trigger headingStyle uc-accordion-button">
+
+                <button class="uc-accordion-button ${accordion.tagName}"
+                        data-bactmin="${item.dataBactmin}"
+                        aria-expanded="${item.defaultOpen ? 'true' : 'false'}"
+                        id="accordion-button-${itemList.index}"
+                        aria-controls="accordion-section-${itemList.index}">
+
+                    <span class="uc-heading headline ${accordion.headingStyle}">
+                        ${item.heading @ context='html'}
+                    </span>
+                </button>
+            </section>
+
+            <section class="uc-accordion-item content"
+                     id="accordion-section-${itemList.index}"
+                     role="region"
+                     aria-labelledby="accordion-button-${itemList.index}"
+                     hidden="${!item.defaultOpen ? true : false}"
+                     aria-hidden="${!item.defaultOpen ? 'true' : 'false'}">
+
+                ${item.content @ context='html'}
+
+                <div data-sly-resource="${'item-' + itemList.index @ resourceType='wcm/foundation/components/parsys'}"
