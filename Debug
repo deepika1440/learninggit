@@ -1,0 +1,28 @@
+<!-- ✅ ADDED: show End Item label before each item (only in author mode) -->
+<div data-sly-test="${itemList.index > 0 && wcmmode.edit}" class="accordion-marker">
+    <p class="accordion-marker__text">End Item ${itemList.index}</p>
+</div>
+
+<!-- ✅ ADDED: show Start Item label for the next item (only in author mode) -->
+<div data-sly-test="${wcmmode.edit}" class="accordion-marker">
+    <p class="accordion-marker__text">Start Item ${itemList.index + 1}</p>
+</div>
+
+<!-- 🔹 EXISTING CODE -->
+<section data-sly-element="${accordion.headingElement @ context='elementName'}" class="trigger">
+    <button class="${accordion.headingStyle} uc-accordion_button"
+        aria-expanded="${item.defaultOpen ? 'true' : 'false'}"
+        id="accordion-button-${itemList.index}">
+        <span class="uc-heading_headline ${accordion.headingStyle}">
+            ${item.heading @ context='html'}
+        </span>
+    </button>
+</section>
+
+<!-- 🔹 EXISTING CODE -->
+<section class="uc-accordion-item_content"
+    id="accordion-section-${itemList.index}"
+    role="presentation"
+    aria-labelledby="accordion-button-${itemList.index}">
+    ${item.content @ context='html'}
+</section>
