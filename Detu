@@ -1,0 +1,34 @@
+<a
+  id="${standaloneLinkModel.componentId @ context='text'}"
+  href="${standaloneLinkModel.cardID @ context='uri'}"
+  class="uc-link linkStyle ${standaloneLinkModel.customClassOverride @ context='text'} ${standaloneLinkModel.disabled ? 'disabled' : ''}"
+  aria-disabled="${standaloneLinkModel.disabled @ context='text'}"
+  aria-label="${standaloneLinkModel.ariaLabel @ context='text'}"
+  data-tracking-name="${standaloneLinkModel.tagName @ context='text'}"
+  data-bactmin="${standaloneLinkModel.trackingId @ context='text'}"
+
+  <!-- modal attributes only when target is modal -->
+  data-sly-attribute.data-uc-modal-id="${(standaloneLinkModel.target == 'modal' || standaloneLinkModel.target == 'Modal') ? standaloneLinkModel.modalId : null}"
+  data-sly-attribute.data-uc-modal-action="${(standaloneLinkModel.target == 'modal' || standaloneLinkModel.target == 'Modal') ? 'open' : null}"
+
+  <!-- target: handle disabled, several possible stored values for "new window" -->
+  data-sly-attribute.target="${standaloneLinkModel.disabled ? null : ( (standaloneLinkModel.target == '_blank' || standaloneLinkModel.target == 'newWindow' || standaloneLinkModel.target == 'New Window') ? '_blank' : (standaloneLinkModel.target == '_self' ? '_self' : (standaloneLinkModel.target ? standaloneLinkModel.target : '_self') )) }"
+
+  <!-- rel only when opening new tab -->
+  data-sly-attribute.rel="${(standaloneLinkModel.target == '_blank' || standaloneLinkModel.target == 'newWindow' || standaloneLinkModel.target == 'New Window') ? 'noopener noreferrer' : null}"
+>
+  <!-- left icon -->
+  <span
+    data-sly-test="${standaloneLinkModel.iconSelection && standaloneLinkModel.iconDisplay == 'left'}"
+    class="uc-icon uc-icon-${standaloneLinkModel.iconSelection} uc-icon-left"
+    alt="${standaloneLinkModel.altText @ context='text'}"></span>
+
+  <!-- link text -->
+  <span class="uc-link--animation">${standaloneLinkModel.text @ context='text'}</span>
+
+  <!-- right icon -->
+  <span
+    data-sly-test="${standaloneLinkModel.iconSelection && standaloneLinkModel.iconDisplay == 'right'}"
+    class="uc-icon uc-icon-${standaloneLinkModel.iconSelection} uc-icon-right"
+    alt="${standaloneLinkModel.altText @ context='text'}"></span>
+</a>
