@@ -1,0 +1,10 @@
+<div class="uc-link_container">
+    <a
+        href="${standaloneLinkModel.link @ context='text'}"
+        data-target="${standaloneLinkModel.target @ context='text'}"
+        class="uc-link"
+        aria-label="${standaloneLinkModel.ariaLabel}"
+    >
+        ${standaloneLinkModel.text}
+    </a>
+</div>
