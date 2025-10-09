@@ -1,0 +1,15 @@
+document.querySelectorAll('.uc-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+        const url = this.getAttribute('href');
+        const target = this.getAttribute('data-target');
+
+        if (!url || !target) return;
+
+        // Only handle 'newWindow'
+        if (target === 'newWindow') {
+            e.preventDefault();
+            const newWindow = window.open(url, 'popupWindow', 'width=750,height=450,resizable,scrollbars');
+            if (newWindow) newWindow.focus();
+        }
+    });
+});
