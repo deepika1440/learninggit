@@ -1,0 +1,18 @@
+<a
+  href="${standaloneLinkModel.cardID @ context='uri'}"
+  class="uc-link linkStyle ${standaloneLinkModel.customClassOverride @ context='text'} ${standaloneLinkModel.disabled ? 'disabled' : ''}"
+  aria-disabled="${standaloneLinkModel.disabled @ context='text'}"
+  aria-label="${standaloneLinkModel.ariaLabel @ context='text'}"
+  data-tracking-name="${standaloneLinkModel.tagName @ context='text'}"
+  data-bactmin="${standaloneLinkModel.trackingId @ context='text'}"
+
+  data-sly-attribute.target="${standaloneLinkModel.target == '_blank' ? '_blank' : (standaloneLinkModel.target == '_self' ? '_self' : null)}"
+  data-sly-attribute.rel="${standaloneLinkModel.target == '_blank' ? 'noopener noreferrer' : null}"
+
+  data-sly-attribute.data-uc-modal-id="${standaloneLinkModel.target == 'modal' ? standaloneLinkModel.modalId : null}"
+  data-sly-attribute.data-uc-modal-action="${standaloneLinkModel.target == 'modal' ? 'open' : null}"
+
+  data-sly-attribute.onclick="${standaloneLinkModel.target == 'newWindow' ? 'displayPopup(\\'' + standaloneLinkModel.cardID + '\\', \\'popupWindow\\')' : null}"
+>
+  <span class="uc-link--animation">${standaloneLinkModel.text @ context='text'}</span>
+</a>
