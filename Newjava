@@ -1,0 +1,13 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const newWindowLinks = document.querySelectorAll('[data-open-newwindow="true"]');
+
+  newWindowLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      if (href && href !== 'javascript:void(0)') {
+        window.open(href, '_blank', 'width=750,height=450,resizable,scrollbars');
+      }
+    });
+  });
+});
