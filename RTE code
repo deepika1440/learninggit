@@ -1,0 +1,14 @@
+(function($, CUI){
+    $(window).adaptTo("foundation-registry").register("foundation.adapters", {
+        type: "rte.linkdialog",
+        selector: ".cq-RichText-dialog-link",
+        adapter: function(el) {
+            var targetField = el.find("[name='./target']");
+            if (targetField.length) {
+                targetField.append(
+                    $('<coral-select-item value="_new">New Window</coral-select-item>')
+                );
+            }
+        }
+    });
+})(jQuery, window.CUI);
