@@ -1,0 +1,22 @@
+(function ($, CUI) {
+    "use strict";
+
+    // Extend RTE Link Dialog to add new dropdown option
+    $(document).on("dialog-ready", function (e) {
+        try {
+            var dialog = $(".cq-dialog");
+            if (!dialog.length) return;
+
+            // Locate the link target dropdown in the RTE link dialog
+            var $targetSelect = dialog.find("coral-select[name='./target']");
+
+            if ($targetSelect.length && !$targetSelect.find("coral-select-item[value='_new']").length) {
+                // Add your new dropdown option
+                $targetSelect.append('<coral-select-item value="_new">New Window</coral-select-item>');
+                console.log("✅ 'New Window' option added to RTE link target dropdown");
+            }
+        } catch (err) {
+            console.error("EAEM: Error extending RTE link dialog:", err);
+        }
+    });
+})(jQuery, window.CUI);
