@@ -1,0 +1,6 @@
+document.addEventListener("DOMContentLoaded", function() {
+  const links = document.querySelectorAll('a.open-new-window');
+  links.forEach(link => {
+    link.setAttribute('target', '_blank');
+  });
+});
