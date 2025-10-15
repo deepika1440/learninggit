@@ -1,0 +1,5 @@
+$(document).on('dialog-ready', function() {
+  $('coral-dialog [name="./linkURL"]').on('change', function() {
+    $('input[name="./linkTarget"]').val('_blank');
+  });
+});
