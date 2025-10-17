@@ -1,0 +1,42 @@
+selectOption(option, value, isClickEvent, dispatchEvent) {
+  // Hide the options list after selection
+  this.optionsList.hidden = true;
+  this.setDropdownIcon();
+
+  // Focus on the selected option if triggered by a click
+  if (isClickEvent) {
+    this.selected.focus();
+  }
+
+  const index = Array.from(this.options).indexOf(option) + 1;
+
+  // Update the selected value and label text
+  this.lastSelectedValue = value;
+  this.selected.textContent = option.textContent;
+  this.selected.setAttribute('data-value', value);
+
+  // ✅ Set or remove data-bactmln correctly
+  if (isClickEvent && value !== this.lastSelectedValue) {
+    this.selected.setAttribute(
+      'data-bactmln',
+      `Filter_-_Dropdown-_-${index}_${value}`
+    );
+  } else if (isClickEvent) {
+    // Allow firing only when user really clicks a new option
+    this.selected.setAttribute(
+      'data-bactmln',
+      `Filter_-_Dropdown-_-${index}_${value}`
+    );
+  } else {
+    // When dropdown just opens or value set programmatically → remove bactmln
+    this.selected.removeAttribute('data-bactmln');
+  }
+
+  // Dispatch custom event when selection changes
+  if (dispatchEvent) {
+    const filterChangeEvent = new CustomEvent('filterChange', {
+      detail: { selectedValue: value }
+    });
+    document.dispatchEvent(filterChangeEvent);
+  }
+}
