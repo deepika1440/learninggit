@@ -1,0 +1,27 @@
+// Wait until DOM is ready
+document.addEventListener("DOMContentLoaded", function () {
+  // Select all dropdown option elements
+  const dropdownOptions = document.querySelectorAll('[aria-controls="dropdownOptionsList"] [role="option"], #dropdownOptionsList [role="option"]');
+
+  dropdownOptions.forEach(option => {
+    option.addEventListener('click', function (e) {
+      // Prevent tag firing when dropdown is just opened
+      e.stopPropagation();
+
+      // Get option details
+      const selectedValue = e.target.getAttribute('data-value') || '';
+      const selectedText = e.target.textContent.trim();
+
+      // Fire the analytics tag only when an option is selected
+      if (selectedValue || selectedText) {
+        _satellite.track('dropdownSelect', {
+          dropdownLabel: 'Card Category',
+          selectedOption: selectedText,
+          selectedValue: selectedValue
+        });
+
+        console.log('Dropdown option selected:', selectedText);
+      }
+    });
+  });
+});
