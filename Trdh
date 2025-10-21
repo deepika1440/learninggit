@@ -1,0 +1,5 @@
+_satellite.track('dropdownSelect', {
+    dropdownLabel: 'Card Category',
+    selectedOption: option.textContent?.trim() || '',
+    selectedValue: value
+  });
