@@ -1,0 +1,27 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // Select all "Change card" dropdown wrappers
+  const wrappers = document.querySelectorAll(".change-card-wrapper");
+
+  wrappers.forEach(wrapper => {
+    const toggle = wrapper.querySelector(".change-card-toggle");
+    const items = wrapper.querySelectorAll(".change-card-dropdown-list");
+
+    if (!toggle || !items.length) return;
+
+    items.forEach((item, index) => {
+      item.addEventListener("click", function () {
+        const title = item.getAttribute("data-headtitle") || "";
+        const qIndex = "Q" + index;
+
+        const formatted =
+          "select_dropdown_" +
+          qIndex +
+          "_" +
+          title.replace(/\s+/g, "_").toLowerCase();
+
+        toggle.setAttribute("data-bactmln", formatted);
+        console.log("Updated data-bactmln →", formatted);
+      });
+    });
+  });
+});
