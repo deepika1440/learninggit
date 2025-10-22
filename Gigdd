@@ -1,0 +1,27 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const toggles = document.querySelectorAll(".t-track-custom-select");
+
+  toggles.forEach(toggle => {
+    const dropdownList = toggle
+      .closest(".change-card-wrapper")
+      .querySelectorAll(".change-card-dropdown-list");
+
+    dropdownList.forEach(item => {
+      item.addEventListener("click", function () {
+        const optionIndex = this.getAttribute("data-option-index");
+        const optionTitle = this.getAttribute("data-headtitle");
+
+        if (optionIndex !== null && optionTitle) {
+          // Format: select_dropdown_Qn_optionName
+          const formatted =
+            "select_dropdown_Q" +
+            optionIndex +
+            "_" +
+            optionTitle.replace(/\s+/g, "_").toLowerCase();
+
+          toggle.setAttribute("data-bactmln", formatted);
+        }
+      });
+    });
+  });
+});
