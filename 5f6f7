@@ -1,0 +1,18 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all three Relationship Bonus <td> cells
+    const tdContainers = [
+        document.getElementById('card-1-relationshipBonus'),
+        document.getElementById('card-2-relationshipBonus'),
+        document.getElementById('card-3-relationshipBonus')
+    ];
+
+    tdContainers.forEach(td => {
+        if (td) {
+            const link = td.querySelector('a'); // Select the <a> inside
+            if (link && !link.classList.contains('custom-rte-link')) {
+                link.classList.add('custom-rte-link'); // Add your class
+                link.setAttribute('data-bact', 'LearnMore-RelationshipBonus'); // Add data-bact
+            }
+        }
+    });
+});
