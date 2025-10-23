@@ -1,0 +1,13 @@
+document.addEventListener('DOMContentLoaded', function () {
+  // Select all relationship bonus cells for the 3 cards
+  const cells = document.querySelectorAll('[id^="card-"][id$="-relationshipBonus"]');
+
+  cells.forEach((cell, index) => {
+    const link = cell.querySelector('a');
+    if (link) {
+      const cardNumber = index + 1; // 1, 2, 3
+      link.classList.add('compare-learnmore-link'); // add your class
+      link.setAttribute('data-bactmln', `Compare_-_Card${cardNumber}_-LearnMore`); // add tracking data
+    }
+  });
+});
