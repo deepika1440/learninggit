@@ -1,0 +1,13 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all RTE containers for Relationship Bonus links
+    const rteContainers = document.querySelectorAll('[id$="relationshipBonus"]');
+
+    rteContainers.forEach(container => {
+        const links = container.querySelectorAll('a');
+
+        links.forEach(link => {
+            link.classList.add('custom-rte-link'); // Add custom class
+            link.setAttribute('data-bact', 'LearnMore-RelationshipBonus'); // Add data-bact
+        });
+    });
+});
