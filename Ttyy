@@ -1,0 +1,7 @@
+document.querySelectorAll('.change-card-dropdown li').forEach((item, index) => {
+  item.addEventListener('click', () => {
+    const dropdown = item.closest('.change-card-dropdown');
+    const title = item.dataset.headtitle;
+    dropdown.setAttribute('data-bactmln', `Select-_-Dropdown-_-Q${index}_${title}`);
+  });
+});
