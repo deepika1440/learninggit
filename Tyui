@@ -1,0 +1,17 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const termsEl = document.getElementById("headinggroup-terms-and-conditions");
+
+  if (termsEl) {
+    termsEl.removeAttribute('target'); // remove _blank if present
+
+    termsEl.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+
+      const features = 'popup=yes,width=800,height=600,toolbar=no,menubar=no,location=no,status=no,scrollbars=yes,resizable=yes,left=300,top=200';
+      const popup = window.open(this.href, 'TermsConditionsPopup', features);
+
+      if (popup) popup.focus();
+    }, true);
+  }
+});
