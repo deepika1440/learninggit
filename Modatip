@@ -1,0 +1,61 @@
+bindModalEvents() {
+    const modal = this.component; // add-a-card-modal container
+    const modalCloseBtn = modal.querySelector('.close-modal-btn');
+    const mainContent = document.querySelector('main');
+
+    // CLOSE MODAL CLICK
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', () => {
+            // Hide modal
+            modal.classList.add('addaCardModalhidden');
+            modal.setAttribute('aria-hidden', 'true');
+
+            // Re-enable scroll
+            document.body.style.overflow = '';
+
+            // Unblock background for screen reader
+            if (mainContent) {
+                mainContent.removeAttribute('inert');
+            }
+
+            document.dispatchEvent(new CustomEvent('compareTableRefresh'));
+        });
+    }
+
+    // When modal OPENS (called by outside code)
+    // You MUST call this after setting aria-hidden = false
+    this.onModalOpen = () => {
+        // Move focus to close button
+        modalCloseBtn?.focus();
+
+        // Freeze body scroll
+        document.body.style.overflow = 'hidden';
+
+        // Prevent screen reader from reading behind modal
+        if (mainContent) {
+            mainContent.setAttribute('inert', '');
+        }
+    };
+
+    // TRAP FOCUS inside modal
+    modal.addEventListener('keydown', (e) => {
+        const focusables = modal.querySelectorAll(
+            'a, button, input, select, textarea, [tabindex="0"]'
+        );
+
+        if (!focusables.length) return;
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (e.key === 'Tab') {
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
+}
