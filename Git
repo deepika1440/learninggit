@@ -1,0 +1,14 @@
+function openModal() {
+  const modal = document.getElementById("myModal");
+  const closeBtn = modal.querySelector(".close-modal-btn");
+
+  modal.classList.add("visible");  // display:block or add open class
+  modal.setAttribute("aria-hidden", "false");
+
+  // 🔥 delay is REQUIRED — this is your missing piece
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      closeBtn.focus();
+    });
+  });
+}
