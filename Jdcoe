@@ -1,0 +1,16 @@
+document.querySelectorAll('.main-navigation-submenu-toggle')
+  .forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      const newState = !expanded;
+
+      // Update toggle button
+      toggle.setAttribute('aria-expanded', newState);
+
+      // Update wrapper div (JAWS reads this)
+      const wrapper = toggle.closest('div[role="button"]');
+      if (wrapper) {
+        wrapper.setAttribute('aria-expanded', newState);
+      }
+    });
+  });
