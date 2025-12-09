@@ -1,0 +1,14 @@
+document.querySelector(".add-a-card-modal").setAttribute("tabindex", "-1");
+document.querySelector(".add-a-card-modal").addEventListener("focus", (e) => {
+   e.preventDefault();
+   document.getElementById("modal").focus();
+});
+
+const modal = document.getElementById("addCardModalComponent");
+const closeBtn = document.getElementById("modal");
+
+modal.addEventListener("focusin", function (e) {
+    if (e.target === modal) {
+        closeBtn.focus();
+    }
+});
