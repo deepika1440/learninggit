@@ -1,0 +1,41 @@
+const button = document.getElementById('dropdownLabel');
+const menu = document.getElementById('dropdownOptionsList');
+const items = menu.querySelectorAll('[role="menuitemradio"]');
+
+button.addEventListener('click', () => {
+  menu.hidden = false;
+  button.setAttribute("aria-expanded", "true");
+
+  // Move focus to first item
+  items[0].focus();
+});
+
+
+
+items.forEach((item, index) => {
+  item.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      items[(index + 1) % items.length].focus();
+    }
+    if (e.key === 'ArrowUp') {
+      items[(index - 1 + items.length) % items.length].focus();
+    }
+    if (e.key === 'Escape') {
+      menu.hidden = true;
+      button.setAttribute("aria-expanded", "false");
+      button.focus();
+    }
+  });
+});
+
+item.addEventListener('click', () => {
+  items.forEach(i => i.setAttribute('aria-checked', 'false'));
+  item.setAttribute('aria-checked', 'true');
+
+  button.textContent = item.textContent;
+  button.focus();
+  menu.hidden = true;
+  button.setAttribute("aria-expanded", "false");
+});
+
+
