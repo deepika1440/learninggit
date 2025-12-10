@@ -1,0 +1,25 @@
+const label = document.getElementById("dropdownLabel");
+const options = document.querySelectorAll(".dropdown-option");
+
+options.forEach(option => {
+  option.addEventListener("click", () => {
+    const selectedText = option.textContent.trim();
+
+    // Reset all
+    options.forEach(o => {
+      o.setAttribute("aria-selected", "false");
+      o.setAttribute("aria-checked", "false");
+      o.classList.remove("selected");
+    });
+
+    // Mark selected
+    option.setAttribute("aria-selected", "true");
+    option.setAttribute("aria-checked", "true");
+    option.classList.add("selected");
+
+    // Update button label (important for SR!)
+    label.textContent = selectedText;
+    label.setAttribute("data-value", selectedText);
+    label.setAttribute("aria-label", `${selectedText}, selected`);
+  });
+});
