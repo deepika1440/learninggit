@@ -1,0 +1,56 @@
+let lastClickedFootnote = null;
+
+document.addEventListener('click', function (e) {
+
+  /* FOOTNOTE CLICK */
+  const footnote = e.target.closest('.footnote-ref');
+  if (footnote) {
+    lastClickedFootnote = footnote;
+
+    const accordion = document.querySelector(
+      footnote.getAttribute('href')
+    );
+
+    if (!accordion) return;
+
+    const backLink = accordion.querySelector('.back-to-content');
+
+    // Set correct return target
+    backLink.dataset.returnTo = footnote.id;
+    backLink.hidden = false;
+
+    return;
+  }
+
+  /* BACK TO CONTENT CLICK */
+  const backLink = e.target.closest('.back-to-content');
+  if (backLink) {
+    e.preventDefault();
+
+    const targetId = backLink.dataset.returnTo;
+    const targetEl = document.getElementById(targetId);
+
+    if (!targetEl) return;
+
+    // Scroll + focus with visible focus ring
+    targetEl.setAttribute('tabindex', '-1');
+    targetEl.focus({ preventScroll: true });
+    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Force focus-visible style even on mouse click
+    targetEl.classList.add('force-focus');
+
+    setTimeout(() => {
+      targetEl.classList.remove('force-focus');
+      targetEl.removeAttribute('tabindex');
+    }, 300);
+
+    // Hide back link again
+    backLink.hidden = true;
+  }
+});
+.footnote-ref:focus-visible,
+.footnote-ref.force-focus {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
