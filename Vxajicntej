@@ -1,0 +1,30 @@
+let lastFootnoteSource = null;
+
+document.addEventListener('click', function (e) {
+  const footnoteRef = e.target.closest('.footnote-ref');
+  const backLink = e.target.closest('.footnote-back-link');
+
+  /* FOOTNOTE CLICK */
+  if (footnoteRef) {
+    lastFootnoteSource = footnoteRef;
+
+    const backToContent = document.querySelector(
+      '#foot_note_4 ~ .footnote-back-link'
+    );
+
+    if (backToContent) {
+      backToContent.hidden = false;
+    }
+  }
+
+  /* BACK TO CONTENT CLICK */
+  if (backLink && lastFootnoteSource) {
+    e.preventDefault();
+
+    lastFootnoteSource.setAttribute('tabindex', '-1');
+    lastFootnoteSource.focus();
+
+    backLink.hidden = true;
+    lastFootnoteSource = null;
+  }
+});
