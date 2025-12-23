@@ -1,0 +1,13 @@
+document.addEventListener('click', function (e) {
+  const backLink = e.target.closest('.footnote-back-link');
+  if (!backLink) return;
+
+  const targetId = backLink.getAttribute('href').replace('#', '');
+  const targetEl = document.getElementById(targetId);
+
+  if (targetEl) {
+    setTimeout(() => {
+      targetEl.focus();
+    }, 0);
+  }
+});
