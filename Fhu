@@ -1,0 +1,43 @@
+let lastFootnoteClicked = null;
+
+/* FOOTNOTE CLICK */
+document.addEventListener('click', function (e) {
+  const footnote = e.target.closest('.footnote-ref');
+  if (!footnote) return;
+
+  lastFootnoteClicked = footnote;
+
+  const footnoteId = footnote.dataset.footnoteId;
+  const accordion = document.querySelector(
+    `[data-footnote-id="${footnoteId}"]`
+  );
+
+  if (!accordion) return;
+
+  const backLink = accordion.querySelector('.back-to-content');
+  if (backLink) {
+    backLink.hidden = false;
+  }
+});
+
+/* BACK TO CONTENT CLICK */
+document.addEventListener('click', function (e) {
+  const backLink = e.target.closest('.back-to-content');
+  if (!backLink || !lastFootnoteClicked) return;
+
+  e.preventDefault();
+
+  // Hide back-to-content
+  backLink.hidden = true;
+
+  // Make footnote focusable temporarily
+  lastFootnoteClicked.setAttribute('tabindex', '-1');
+
+  // Restore focus (FORCE focus ring)
+  lastFootnoteClicked.focus();
+
+  // Cleanup tabindex
+  setTimeout(() => {
+    lastFootnoteClicked.removeAttribute('tabindex');
+  }, 0);
+});
