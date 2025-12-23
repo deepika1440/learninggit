@@ -1,0 +1,22 @@
+let lastFootnoteRefId = null;
+
+document.addEventListener('click', (e) => {
+  const footnoteRef = e.target.closest('[data-footnote-ref]');
+  if (!footnoteRef) return;
+
+  lastFootnoteRefId = footnoteRef.id;
+});
+
+document.addEventListener('click', (e) => {
+  const backLink = e.target.closest('.footnote-back-link');
+  if (!backLink || !lastFootnoteRefId) return;
+
+  e.preventDefault();
+
+  const target = document.getElementById(lastFootnoteRefId);
+  if (target) {
+    target.focus();
+    target.scrollIntoView({ block: 'center' });
+  }
+});
+
