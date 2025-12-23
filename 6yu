@@ -1,0 +1,54 @@
+document.addEventListener('click', function (e) {
+
+  /* ===============================
+     FOOTNOTE → ACCORDION
+  =============================== */
+  const footnote = e.target.closest('.footnote-ref');
+  if (footnote) {
+    const targetId = footnote.getAttribute('href').replace('#', '');
+    const accordion = document.getElementById(targetId);
+    const backLink = accordion?.querySelector('.back-to-content');
+
+    if (backLink) {
+      backLink.hidden = false;
+      backLink.dataset.returnFocus = footnote.id;
+    }
+    return;
+  }
+
+  /* ===============================
+     BACK TO CONTENT → FOOTNOTE
+  =============================== */
+  const backLink = e.target.closest('.back-to-content');
+  if (!backLink) return;
+
+  e.preventDefault();
+
+  const returnId = backLink.dataset.returnFocus;
+  const footnoteEl = document.getElementById(returnId);
+
+  if (!footnoteEl) return;
+
+  /* Hide back link again */
+  backLink.hidden = true;
+
+  /* Remove old focus styles */
+  document
+    .querySelectorAll('.force-focus')
+    .forEach(el => el.classList.remove('force-focus'));
+
+  /* Force focus + focus ring */
+  footnoteEl.classList.add('force-focus');
+  footnoteEl.focus({ preventScroll: true });
+
+  /* Scroll after focus */
+  footnoteEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  /* Clean up focus ring after tab or click elsewhere */
+  const cleanup = () => {
+    footnoteEl.classList.remove('force-focus');
+    footnoteEl.removeEventListener('blur', cleanup);
+  };
+
+  footnoteEl.addEventListener('blur', cleanup);
+});
