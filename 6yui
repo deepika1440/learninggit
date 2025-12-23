@@ -1,0 +1,45 @@
+let activeFootnoteId = null;
+
+document.addEventListener('click', (e) => {
+
+  /* ------------------------------
+     FOOTNOTE CLICK
+  ------------------------------- */
+  const footnote = e.target.closest('.footnote-ref');
+  if (footnote) {
+    activeFootnoteId = footnote.id;
+
+    // Show correct Back to content
+    const accordionId = footnote.getAttribute('href').substring(1);
+    const accordion = document.getElementById(accordionId);
+
+    if (accordion) {
+      const backLink = accordion.querySelector('.back-to-content');
+      if (backLink) backLink.hidden = false;
+    }
+  }
+
+  /* ------------------------------
+     BACK TO CONTENT CLICK
+  ------------------------------- */
+  const backLink = e.target.closest('.back-to-content');
+  if (backLink && activeFootnoteId) {
+    e.preventDefault();
+
+    const footnoteEl = document.getElementById(activeFootnoteId);
+    if (!footnoteEl) return;
+
+    // Hide Back to content
+    backLink.hidden = true;
+
+    // Force focus ring
+    footnoteEl.classList.add('force-focus-visible');
+
+    footnoteEl.focus();
+
+    // Remove forced class after focus
+    setTimeout(() => {
+      footnoteEl.classList.remove('force-focus-visible');
+    }, 200);
+  }
+});
