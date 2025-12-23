@@ -1,0 +1,35 @@
+document.addEventListener('click', function (e) {
+
+  /* ---------- FOOTNOTE CLICK ---------- */
+  const footnote = e.target.closest('.footnote-ref');
+  if (footnote) {
+    const footnoteId = footnote.id;
+    const noteNumber = footnote.dataset.footnoteId;
+    const target = document.getElementById(`foot_note_${noteNumber}`);
+    const backLink = target?.querySelector('.back-to-content');
+
+    if (backLink) {
+      backLink.hidden = false;
+      backLink.dataset.returnTo = footnoteId;
+    }
+
+    return;
+  }
+
+  /* ---------- BACK TO CONTENT CLICK ---------- */
+  const backLink = e.target.closest('.back-to-content');
+  if (backLink) {
+    e.preventDefault();
+
+    const returnId = backLink.dataset.returnTo;
+    const footnoteRef = document.getElementById(returnId);
+
+    backLink.hidden = true;
+
+    if (footnoteRef) {
+      setTimeout(() => {
+        footnoteRef.focus(); // ← THIS is why focus ring appears
+      }, 0);
+    }
+  }
+});
