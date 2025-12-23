@@ -1,0 +1,36 @@
+let lastFootnoteRefId = null;
+
+document.addEventListener('click', function (e) {
+  /* FOOTNOTE CLICK */
+  const footnoteRef = e.target.closest('.footnote-ref');
+  if (footnoteRef) {
+    lastFootnoteRefId = footnoteRef.id;
+
+    const backLink = document.querySelector('.footnote-back-link');
+    if (backLink) {
+      backLink.hidden = false;
+      backLink.setAttribute(
+        'data-return-to',
+        lastFootnoteRefId
+      );
+    }
+    return;
+  }
+
+  /* BACK TO CONTENT CLICK */
+  const backLink = e.target.closest('.footnote-back-link');
+  if (backLink) {
+    e.preventDefault();
+
+    const returnId = backLink.getAttribute('data-return-to');
+    const returnEl = document.getElementById(returnId);
+
+    if (returnEl) {
+      returnEl.setAttribute('tabindex', '-1');
+      returnEl.focus();
+    }
+
+    backLink.hidden = true;
+    backLink.removeAttribute('data-return-to');
+  }
+});
