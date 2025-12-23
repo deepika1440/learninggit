@@ -1,0 +1,39 @@
+let lastFootnoteRef = null;
+
+document.addEventListener('click', (e) => {
+  const footnote = e.target.closest('.footnote-ref');
+  const backLink = e.target.closest('.back-to-content');
+
+  /* FOOTNOTE CLICK */
+  if (footnote) {
+    lastFootnoteRef = footnote;
+
+    const accordion = document.querySelector('#accordion-footnote-4');
+    const backToContent = accordion.querySelector('.back-to-content');
+
+    backToContent.hidden = false;
+
+    return;
+  }
+
+  /* BACK TO CONTENT CLICK */
+  if (backLink && lastFootnoteRef) {
+    e.preventDefault();
+
+    backLink.hidden = true;
+
+    /* restore focus WITH ring */
+    lastFootnoteRef.focus({ preventScroll: true });
+    lastFootnoteRef.scrollIntoView({ block: 'center' });
+
+    lastFootnoteRef = null;
+  }
+});
+
+
+.footnote-ref:focus,
+.footnote-ref:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
