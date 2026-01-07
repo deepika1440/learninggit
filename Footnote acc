@@ -1,0 +1,83 @@
+connectedCallback() {
+  this.accordionItems = this.querySelectorAll('uc-accordion-item');
+
+  // Only top-level accordion items
+  this.topLevelAccordionItems = Array.from(this.accordionItems).filter(
+    item => item.closest('uc-accordion-item') === item
+  );
+
+  this.footnoteRefs = this.querySelectorAll('.footnote-ref');
+  this.backToContentLinks = this.querySelectorAll('.back-to-content');
+
+  this.bindEvents();
+}
+
+bindEvents() {
+  this.handleFootnoteRefClick = this.handleFootnoteRefClick.bind(this);
+  this.handleBackToContentClick = this.handleBackToContentClick.bind(this);
+
+  this.footnoteRefs.forEach(ref => {
+    ref.addEventListener('click', this.handleFootnoteRefClick);
+  });
+
+  this.backToContentLinks.forEach(link => {
+    link.addEventListener('click', this.handleBackToContentClick);
+  });
+}
+disconnectedCallback() {
+  this.footnoteRefs.forEach(ref => {
+    ref.removeEventListener('click', this.handleFootnoteRefClick);
+  });
+
+  this.backToContentLinks.forEach(link => {
+    link.removeEventListener('click', this.handleBackToContentClick);
+  });
+}
+handleFootnoteRefClick(e) {
+  e.preventDefault();
+
+  const footnoteRef = e.currentTarget;
+  this.lastClickedFootnote = footnoteRef;
+
+  const targetId = footnoteRef.getAttribute('href')?.replace('#', '');
+  if (!targetId) return;
+
+  const accordion = document.getElementById(targetId);
+  if (!accordion) return;
+
+  const backLink = accordion.querySelector('.back-to-content');
+  if (!backLink) return;
+
+  // Store return target
+  backLink.dataset.returnTo = footnoteRef.id;
+  backLink.classList.remove('is-hidden');
+
+  // Move focus to accordion
+  accordion.setAttribute('tabindex', '-1');
+  accordion.focus();
+  accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+handleBackToContentClick(e) {
+  e.preventDefault();
+
+  const backLink = e.currentTarget;
+  const targetId = backLink.dataset.returnTo;
+  if (!targetId) return;
+
+  const targetEl = document.getElementById(targetId);
+  if (!targetEl) return;
+
+  targetEl.setAttribute('tabindex', '-1');
+  targetEl.focus({ preventScroll: true });
+  targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  // Force visible focus ring
+  targetEl.classList.add('force-focus');
+
+  setTimeout(() => {
+    targetEl.classList.remove('force-focus');
+    targetEl.removeAttribute('tabindex');
+  }, 300);
+
+  backLink.classList.add('is-hidden');
+}
