@@ -1,0 +1,59 @@
+handleFootnoteRefClick(e) {
+  const footnote = e.target.closest('a.footnote-ref');
+  if (!footnote) return;
+
+  e.preventDefault();
+
+  // Store last clicked footnote
+  this.lastClickedFootnote = footnote;
+
+  // Get accordion target ID from href
+  const targetId = footnote.getAttribute('href')?.replace('#', '');
+  if (!targetId) return;
+
+  const accordion = document.getElementById(targetId);
+  if (!accordion) return;
+
+  const backLink = accordion.querySelector('a.back-to-content');
+  if (!backLink) return;
+
+  // Store return target
+  backLink.dataset.returnTo = footnote.id;
+
+  // Show Back to content link
+  backLink.classList.remove('is-hidden');
+
+  // Scroll to accordion
+  accordion.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+
+  // Focus Back to content (CSS handles focus ring)
+  backLink.focus();
+}
+
+handleFootnoteBackToContent(e) {
+  const backLink = e.target.closest('a.back-to-content');
+  if (!backLink) return;
+
+  e.preventDefault();
+
+  const targetId = backLink.dataset.returnTo;
+  if (!targetId) return;
+
+  const targetEl = document.getElementById(targetId);
+  if (!targetEl) return;
+
+  // Scroll back to footnote
+  targetEl.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+
+  // Focus footnote
+  targetEl.focus();
+
+  // Hide Back to content again
+  backLink.classList.add('is-hidden');
+}
