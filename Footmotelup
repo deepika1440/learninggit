@@ -1,0 +1,157 @@
+class UnityAccordionItem extends HTMLElement {
+
+  content;
+  trigger;
+  button;
+  anchors;
+  accordionChildItems;
+  footnoteRefs;
+  backToContentLinks;
+
+  constructor() {
+    super();
+
+    this.content = this.querySelector('.uc-accordion-item_content');
+    this.trigger = this.querySelector('.trigger');
+    this.button = this.querySelector('.uc-accordion_button');
+
+    this.anchors = this.querySelectorAll('a');
+    this.footnoteRefs = this.querySelectorAll('.footnote-ref');
+    this.backToContentLinks = this.querySelectorAll('.back-to-content');
+
+    this.toggle = this.toggle.bind(this);
+    this.handleFootnoteRefClick = this.handleFootnoteRefClick.bind(this);
+    this.handleBackToContentClick = this.handleBackToContentClick.bind(this);
+  }
+
+  static get observedAttributes() {
+    return ['isopen'];
+  }
+
+  connectedCallback() {
+    if (this.trigger) {
+      this.trigger.addEventListener('click', this.toggle);
+    }
+
+    this.bindEvents();
+  }
+
+  disconnectedCallback() {
+    if (this.trigger) {
+      this.trigger.removeEventListener('click', this.toggle);
+    }
+
+    this.footnoteRefs.forEach(ref =>
+      ref.removeEventListener('click', this.handleFootnoteRefClick)
+    );
+
+    this.backToContentLinks.forEach(link =>
+      link.removeEventListener('click', this.handleBackToContentClick)
+    );
+  }
+
+  bindEvents() {
+    this.footnoteRefs.forEach(ref =>
+      ref.addEventListener('click', this.handleFootnoteRefClick)
+    );
+
+    this.backToContentLinks.forEach(link =>
+      link.addEventListener('click', this.handleBackToContentClick)
+    );
+  }
+
+  /* -----------------------------
+     ACCORDION OPEN / CLOSE
+  ----------------------------- */
+
+  toggle() {
+    this.hasAttribute('isopen')
+      ? this.removeAttribute('isopen')
+      : this.setAttribute('isopen', '');
+  }
+
+  open() {
+    this.content.hidden = false;
+    this.content.setAttribute('aria-hidden', 'false');
+    this.content.style.maxHeight = '100%';
+    this.button.setAttribute('aria-expanded', 'true');
+  }
+
+  close() {
+    this.content.hidden = true;
+    this.content.setAttribute('aria-hidden', 'true');
+    this.content.style.removeProperty('max-height');
+    this.button.setAttribute('aria-expanded', 'false');
+  }
+
+  attributeChangedCallback(name, oldVal, newVal) {
+    if (name === 'isopen') {
+      newVal === null ? this.close() : this.open();
+    }
+  }
+
+  /* -----------------------------
+     FOOTNOTE → ACCORDION
+  ----------------------------- */
+
+  handleFootnoteRefClick(e) {
+    e.preventDefault();
+
+    const footnoteRef = e.currentTarget;
+    lastClickedFootnote = footnoteRef;
+
+    const targetId = footnoteRef.getAttribute('href')?.replace('#', '');
+    if (!targetId) return;
+
+    const accordionItem = document.getElementById(targetId);
+    if (!accordionItem) return;
+
+    // Open footnote accordion
+    accordionItem.setAttribute('isopen', '');
+
+    setTimeout(() => {
+      const backLink = accordionItem.querySelector('.back-to-content');
+      if (!backLink) return;
+
+      backLink.dataset.returnTo = footnoteRef.id;
+      backLink.classList.remove('is-hidden');
+
+      accordionItem.setAttribute('tabindex', '-1');
+      accordionItem.focus();
+
+      accordionItem.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 300);
+  }
+
+  /* -----------------------------
+     BACK TO CONTENT
+  ----------------------------- */
+
+  handleBackToContentClick(e) {
+    e.preventDefault();
+
+    const backLink = e.currentTarget;
+    const targetId = backLink.dataset.returnTo;
+    if (!targetId) return;
+
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    targetEl.setAttribute('tabindex', '-1');
+
+    targetEl.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+    targetEl.focus({ preventScroll: true });
+    targetEl.removeAttribute('tabindex');
+
+    backLink.classList.add('is-hidden');
+  }
+}
+
+customElements.define('uc-accordion-item', UnityAccordionItem);
