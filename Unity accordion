@@ -1,0 +1,112 @@
+class UnityAccordionItem extends HTMLElement {
+
+  constructor() {
+    super();
+
+    // ✅ Bind once
+    this._onFootnoteRefClick =
+      this.handleFootnoteRefClick.bind(this);
+
+    this._onBackToContentClick =
+      this.handleBackToContentClick.bind(this);
+  }
+
+  /* ===============================
+     CONNECT
+  =============================== */
+  connectedCallback() {
+    // Query DOM ONLY here
+    this.footnoteRefs = this.querySelectorAll('.footnote-ref');
+    this.backToContentLinks = this.querySelectorAll('.back-to-content');
+
+    // 🔹 Add listeners ONLY to required elements
+    this.footnoteRefs.forEach(ref => {
+      ref.addEventListener('click', this._onFootnoteRefClick);
+    });
+
+    this.backToContentLinks.forEach(link => {
+      link.addEventListener('click', this._onBackToContentClick);
+    });
+  }
+
+  /* ===============================
+     DISCONNECT
+  =============================== */
+  disconnectedCallback() {
+    // 🔹 Remove listeners (memory-safe)
+    this.footnoteRefs?.forEach(ref => {
+      ref.removeEventListener('click', this._onFootnoteRefClick);
+    });
+
+    this.backToContentLinks?.forEach(link => {
+      link.removeEventListener('click', this._onBackToContentClick);
+    });
+  }
+
+  /* =================================================
+     FOOTNOTE REF CLICK
+  ================================================= */
+  handleFootnoteRefClick(e) {
+    e.preventDefault();
+
+    const footnoteRef = e.currentTarget;
+    lastClickedFootnote = footnoteRef;
+
+    const targetId = footnoteRef
+      .getAttribute('href')
+      ?.replace('#', '');
+
+    if (!targetId) return;
+
+    const accordionItem = document.getElementById(targetId);
+    if (!accordionItem) return;
+
+    // Open footnote accordion
+    accordionItem.setAttribute('isopen', '');
+
+    setTimeout(() => {
+      const backLink =
+        accordionItem.querySelector('.back-to-content');
+
+      if (!backLink) return;
+
+      backLink.dataset.returnTo = footnoteRef.id;
+      backLink.classList.remove('is-hidden');
+
+      accordionItem.setAttribute('tabindex', '-1');
+      accordionItem.focus();
+      accordionItem.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 300);
+  }
+
+  /* =================================================
+     BACK TO CONTENT CLICK
+  ================================================= */
+  handleBackToContentClick(e) {
+    e.preventDefault();
+
+    const backLink = e.currentTarget;
+    const targetId = backLink.dataset.returnTo;
+
+    if (!targetId) return;
+
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    targetEl.setAttribute('tabindex', '-1');
+    targetEl.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+    targetEl.focus({ preventScroll: true });
+    targetEl.removeAttribute('tabindex');
+
+    backLink.classList.add('is-hidden');
+  }
+}
+
+customElements.define('uc-accordion-item', UnityAccordionItem);
