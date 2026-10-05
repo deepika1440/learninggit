@@ -1,0 +1,34 @@
+function redirectUsUrlForGlobalUser() {
+    var pathname = window.location.pathname;
+
+    // Only handle URLs starting with /us/
+    if (!/^\/us(\/|$)/i.test(pathname)) {
+        return;
+    }
+
+    // Check whether a country has been selected
+    var cookies = document.cookie.split(';');
+    var selectedCountry = null;
+
+    cookies.forEach(function (cookie) {
+        var parts = cookie.trim().split('=');
+
+        if (parts[0] === 'ares-user-country-code') {
+            selectedCountry = parts[1];
+        }
+    });
+
+    // Country is selected, so keep /us/
+    if (selectedCountry) {
+        return;
+    }
+
+    // No country selected, remove /us/
+    var newPath = pathname.replace(/^\/us/i, '') || '/';
+
+    window.location.replace(
+        newPath +
+        window.location.search +
+        window.location.hash
+    );
+}
