@@ -1,0 +1,19 @@
+var el = [...document.querySelectorAll('header *')]
+    .find(e => e.textContent.trim() === 'Who We Serve');
+
+console.log(el);
+console.log(el?.outerHTML);
+
+
+document.querySelectorAll('header a').forEach(function(a) {
+    if (a.textContent.includes('Who We Serve')) {
+        console.log(a.outerHTML);
+    }
+});
+
+
+var a = [...document.querySelectorAll('header a')]
+    .find(a => a.textContent.includes('Who We Serve'));
+
+console.log(a);
+console.log(a?.parentElement?.outerHTML);
