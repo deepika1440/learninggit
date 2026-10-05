@@ -1,0 +1,90 @@
+(function () {
+
+    function getSelectedCountry() {
+        var cookies = document.cookie.split(';');
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+
+            if (cookie.indexOf('ares-user-country-code=') === 0) {
+                return cookie.split('=')[1];
+            }
+        }
+
+        return null;
+    }
+
+    function redirectUsUrlForGlobalUser() {
+        var pathname = window.location.pathname;
+        var selectedCountry = getSelectedCountry();
+
+        console.log('Current URL:', pathname);
+        console.log('Selected country:', selectedCountry);
+
+        // If country is selected, don't change anything
+        if (selectedCountry) {
+            console.log('Country selected - no redirect');
+            return;
+        }
+
+        // No country selected + current URL starts with /us
+        if (/^\/us(\/|$)/i.test(pathname)) {
+
+            var newPath = pathname.replace(/^\/us/i, '');
+
+            if (!newPath) {
+                newPath = '/';
+            }
+
+            var newUrl =
+                newPath +
+                window.location.search +
+                window.location.hash;
+
+            console.log('Global user - redirecting to:', newUrl);
+
+            window.location.replace(newUrl);
+        }
+    }
+
+    function fixNavHrefsForGlobalUsers() {
+        var pathname = window.location.pathname;
+        var selectedCountry = getSelectedCountry();
+
+        // Don't modify navigation if country is selected
+        if (selectedCountry) {
+            console.log('Country selected - navigation unchanged');
+            return;
+        }
+
+        // Global page
+        if (!/^\/[a-z]{2}(\/|$)/i.test(pathname)) {
+
+            document.querySelectorAll('header a[href^="/us/"]')
+                .forEach(function (a) {
+
+                    var href = a.getAttribute('href');
+
+                    if (href) {
+                        var newHref = href.replace(/^\/us\//i, '/');
+
+                        a.setAttribute('href', newHref);
+
+                        console.log(
+                            'Navigation fixed:',
+                            href,
+                            '→',
+                            newHref
+                        );
+                    }
+                });
+        }
+    }
+
+    // First handle direct URL
+    redirectUsUrlForGlobalUser();
+
+    // Then fix header navigation links
+    fixNavHrefsForGlobalUsers();
+
+})();
