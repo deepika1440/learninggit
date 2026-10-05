@@ -1,0 +1,10 @@
+document.querySelectorAll('header a[href^="/us/"]').forEach(function (a) {
+    var before = a.getAttribute('href');
+
+    a.setAttribute(
+        'href',
+        before.replace(/^\/us\//i, '/')
+    );
+
+    console.log('Changed:', before, '→', a.getAttribute('href'));
+});
