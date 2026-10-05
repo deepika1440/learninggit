@@ -1,0 +1,6 @@
+document.querySelectorAll('header a').forEach(function (a) {
+    console.log(
+        'TEXT:', a.textContent.trim(),
+        'HREF:', a.getAttribute('href')
+    );
+});
