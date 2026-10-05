@@ -1,0 +1,15 @@
+We are in the middle of writing an on-demand process to generate the Marq Logistics sitemap and have run into an issue related to the multi-tenant setup of our current AEM program. Currently Ares has an on-demand site map and both the Ares service, and the Marq service needs to extend the ResourceTreeSitemapGenerator to implement an on-demand site map. Each site implementing our own solution results in inconsistent results based on which service gets resolved. We have implemented a Marq site map following this process and observed this inconsistency.
+
+We are proposing the following approach to address this issue: Move a common sitemap generator implementation to AEM Common and keep the tenant-specific sitemap logic within the respective repositories as dedicated OSGi services. These services can be exported and consumed by the AEM Common sitemap generator. Based on the content path (or tenant context), the common sitemap generator can dynamically delegate processing to the appropriate tenant-specific OSGi service.
+
+We need to complete
+
+کھا
+
+Explain this
+
+ㅂ
+
+99
+
+ate your feedback on this issue.
