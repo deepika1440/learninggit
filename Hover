@@ -1,0 +1,12 @@
+document.querySelectorAll('header a[href*="/content/aresmgmt/language-masters/en/"]')
+.forEach(function (a) {
+    var before = a.getAttribute('href');
+
+    var after = before
+        .replace('/content/aresmgmt/language-masters/en/', '/')
+        .replace(/\.html$/, '');
+
+    a.setAttribute('href', after);
+
+    console.log('Changed:', before, '=>', after);
+});
