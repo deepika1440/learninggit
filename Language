@@ -1,0 +1,4 @@
+[...document.querySelectorAll('header a[href*="language-masters"]')]
+    .forEach(function (a) {
+        console.log(a.textContent.trim(), '=>', a.getAttribute('href'));
+    });
