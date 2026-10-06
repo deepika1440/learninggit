@@ -1,0 +1,1 @@
+Please review my AEM URL setup: global gl pages + Sling mappings + Dispatcher + HeaderNavigation JS. Identify exactly where /us is being added and give me the minimum code/config changes needed so global users get countryless URLs while selected countries retain /us, /fr, /ca; no /us redirects.
